@@ -1,42 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC
-		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-<hibernate-configuration>
-	<session-factory>
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+<!-- <!DOCTYPE hibernate-configuration PUBLIC -->
+<!-- 		"-//Hibernate/Hibernate Configuration DTD 3.0//EN" -->
+<!-- 		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"> -->
+<!-- <hibernate-configuration> -->
+<!-- 	<session-factory> -->
 
-		<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/FurrEver</property>
-		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">password</property>
+<!-- 		<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property> -->
+<!-- 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/FurrEver</property> -->
+<!-- 		<property name="hibernate.connection.username">root</property> -->
+<!-- 		<property name="hibernate.connection.password">password</property> -->
 
-		<!-- <property name="hibernate.connection.datasource">java:comp/env/jdbc/FurrEverHibernate</property> -->
-		<property name="hibernate.current_session_context_class">thread</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-		<property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
-		<property name="hibernate.transaction.coordinator_class">jdbc</property>
-		<property name="hibernate.show_sql">true</property>
-		<property name="hibernate.format_sql">true</property>
-		<property name="hibernate.current_session_context_class">thread</property>
-		<!-- 物件與資料庫表格映射文件，mapping屬性改class，值為類別全名 -->
-        <mapping class="com.dept.model.DeptVO" />
-        <mapping class="com.emp.model.EmpVO" />
-
-
+<!-- 		<!-- <property name="hibernate.connection.datasource">java:comp/env/jdbc/FurrEverHibernate</property> --> -->
+<!-- 		<property name="hibernate.current_session_context_class">thread</property> -->
+<!-- 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property> -->
+<!-- 		<property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property> -->
+<!-- 		<property name="hibernate.transaction.coordinator_class">jdbc</property> -->
+<!-- 		<property name="hibernate.show_sql">true</property> -->
+<!-- 		<property name="hibernate.format_sql">true</property> -->
+<!-- 		<property name="hibernate.current_session_context_class">thread</property> -->
+<!-- 		<!-- 物件與資料庫表格映射文件，mapping屬性改class，值為類別全名 --> -->
+<!--         <mapping class="com.dept.model.DeptVO" /> -->
+<!--         <mapping class="com.emp.model.EmpVO" /> -->
 
 
 
-		<mapping class="articles.vo.Comment" />
-		<mapping class="articles.vo.Reply" />
-		<mapping class="articles.vo.User" />
-        <mapping class="articles.vo.ArticlesLike" />
-        <mapping class="articles.vo.ArticlesReport" />
-        <mapping class="articles.vo.ComReport" />
-        <mapping class="articles.vo.ReplyReport" />
-		<mapping class="articles.vo.Article" />
 
-		<mapping class="pet.vo.Pet" />
+
+<!-- 		<mapping class="articles.vo.Comment" /> -->
+<!-- 		<mapping class="articles.vo.Reply" /> -->
+<!-- 		<mapping class="articles.vo.User" /> -->
+<!--         <mapping class="articles.vo.ArticlesLike" /> -->
+<!--         <mapping class="articles.vo.ArticlesReport" /> -->
+<!--         <mapping class="articles.vo.ComReport" /> -->
+<!--         <mapping class="articles.vo.ReplyReport" /> -->
+<!-- 		<mapping class="articles.vo.Article" /> -->
+
+<!-- 		<mapping class="pet.vo.Pet" /> -->
 		
-		<mapping class="master.vo.Master" />
-	</session-factory>
-</hibernate-configuration>
+<!-- 		<mapping class="master.vo.Master" /> -->
+<!-- 	</session-factory> -->
+<!-- </hibernate-configuration> -->
