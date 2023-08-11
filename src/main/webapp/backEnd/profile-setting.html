@@ -189,64 +189,56 @@ body {
 													<div class="mb-4 row align-items-center">
 														<label class="form-label-title col-sm-2 mb-0">廠商名稱</label>
 														<div class="col-sm-10">
-															<input id="m_name" class="form-control" type="text"
-																placeholder="輸入廠商名稱">
+															<input id="m_name" class="form-control" type="text" placeholder="輸入廠商名稱">
 														</div>
 													</div>
 
 													<div class="mb-4 row align-items-center">
 														<label class="form-label-title col-sm-2 mb-0">統一編號</label>
 														<div class="col-sm-10">
-															<input id="m_gui" class="form-control" type="text"
-																placeholder="輸入統一編號">
+															<input id="m_gui" class="form-control" type="text" placeholder="輸入統一編號">
 														</div>
 													</div>
 
 													<div class="mb-4 row align-items-center">
 														<label class="form-label-title col-sm-2 mb-0">銀行帳號</label>
 														<div class="col-sm-10">
-															<input id="m_bank_id" class="form-control" type="text"
-																placeholder="輸入銀行帳號">
+															<input id="m_bank_id" class="form-control" type="text" placeholder="輸入銀行帳號">
 														</div>
 													</div>
 
 													<div class="mb-4 row align-items-center">
 														<label class="form-label-title col-sm-2 mb-0">廠商地址</label>
 														<div class="col-sm-10">
-															<input id="m_address" class="form-control" type="text"
-																placeholder="輸入地址">
+															<input id="m_address" class="form-control" type="text" placeholder="輸入地址">
 														</div>
 													</div>
 
 													<div class="mb-4 row align-items-center">
 														<label class="form-label-title col-sm-2 mb-0">輸入手機</label>
 														<div class="col-sm-10">
-															<input id="m_phone" class="form-control" type="text"
-																placeholder="輸入電話">
+															<input id="m_phone" class="form-control" type="text" placeholder="輸入電話">
 														</div>
 													</div>
 
 													<div class="mb-4 row align-items-center">
 														<label class="form-label-title col-sm-2 mb-0">身分證字號</label>
 														<div class="col-sm-10">
-															<input id="m_man_id" class="form-control" type="text"
-																placeholder="輸入身分證">
+															<input id="m_man_id" class="form-control" type="text" placeholder="輸入身分證">
 														</div>
 													</div>
 
 													<div class="mb-4 row align-items-center">
 														<label class="form-label-title col-sm-2 mb-0">聯絡人名稱</label>
 														<div class="col-sm-10">
-															<input id="m_man_name" class="form-control" type="text"
-																placeholder="輸入名稱">
+															<input id="m_man_name" class="form-control" type="text" placeholder="輸入名稱">
 														</div>
 													</div>
 
 													<div class="mb-4 row align-items-center">
 														<label class="form-label-title col-sm-2 mb-0">電子信箱</label>
 														<div class="col-sm-10">
-															<input id="m_email" class="form-control" type="email"
-																placeholder="輸入電子信箱">
+															<input id="m_email" class="form-control" type="email" placeholder="輸入電子信箱">
 														</div>
 													</div>
 
@@ -326,11 +318,9 @@ body {
 					var parsedData = JSON.parse(data);
 					let m_id = parsedData.m_id;
 					let m_name = decodeURIComponent(parsedData.m_name);
-// 					let m_name = parsedData.m_name;
 					let m_gui = parsedData.m_gui;
 					let m_bank_id = parsedData.m_bank_id;
 					let m_address = decodeURIComponent(parsedData.m_address);
-// 					let m_address = parsedData.m_address;
 					let m_man_id = parsedData.m_man_id;
 					let m_man_name = parsedData.m_man_name;
 					let m_email = parsedData.m_email;

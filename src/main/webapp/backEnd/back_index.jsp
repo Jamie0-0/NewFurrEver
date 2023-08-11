@@ -122,7 +122,7 @@ List<MasterPicVO2> list2 = dao2.indexNatrix2();
 
 		<div class="page-body-wrapper">
 			<div class="sidebar-wrapper">
-				<div id="sidebarEffect"></div>
+<!-- 				<div id="sidebarEffect"></div> -->
 				<div>
 					<div class="logo-wrapper logo-wrapper-center">
 						<a href="<%=request.getContextPath()%>/backEnd/back_index.jsp"
@@ -213,8 +213,7 @@ List<MasterPicVO2> list2 = dao2.indexNatrix2();
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-sm-6 col-xxl-3 col-lg-6">
-							<div
-								class="main-tiles border-5 border-0  card-hover card o-hidden">
+							<div class="main-tiles border-5 border-0  card-hover card o-hidden">
 								<div class="custome-1-bg b-r-4 card-body">
 									<div class="media align-items-center static-top-widget">
 										<div class="media-body p-0">
@@ -234,8 +233,7 @@ List<MasterPicVO2> list2 = dao2.indexNatrix2();
 						</div>
 
 						<div class="col-sm-6 col-xxl-3 col-lg-6">
-							<div
-								class="main-tiles border-5 card-hover border-0 card o-hidden">
+							<div class="main-tiles border-5 card-hover border-0 card o-hidden">
 								<div class="custome-2-bg b-r-4 card-body">
 									<div class="media static-top-widget">
 										<div class="media-body p-0">
@@ -255,8 +253,7 @@ List<MasterPicVO2> list2 = dao2.indexNatrix2();
 						</div>
 
 						<div class="col-sm-6 col-xxl-3 col-lg-6">
-							<div
-								class="main-tiles border-5 card-hover border-0  card o-hidden">
+							<div class="main-tiles border-5 card-hover border-0  card o-hidden">
 								<div class="custome-3-bg b-r-4 card-body">
 									<div class="media static-top-widget">
 										<div class="media-body p-0">
@@ -277,8 +274,7 @@ List<MasterPicVO2> list2 = dao2.indexNatrix2();
 						</div>
 
 						<div class="col-sm-6 col-xxl-3 col-lg-6">
-							<div
-								class="main-tiles border-5 card-hover border-0 card o-hidden">
+							<div class="main-tiles border-5 card-hover border-0 card o-hidden">
 								<div class="custome-4-bg b-r-4 card-body">
 									<div class="media static-top-widget">
 										<div class="media-body p-0">
@@ -300,8 +296,7 @@ List<MasterPicVO2> list2 = dao2.indexNatrix2();
 
 						<div class="col-xl-6 col-md-12">
 							<div class="card o-hidden card-hover">
-								<div
-									class="card-header card-header-top card-header--2 px-0 pt-0">
+								<div class="card-header card-header-top card-header--2 px-0 pt-0">
 									<div class="card-header-title">
 										<h4>最暢銷產品</h4>
 									</div>
@@ -350,8 +345,7 @@ List<MasterPicVO2> list2 = dao2.indexNatrix2();
 
 						<div class="col-xl-6">
 							<div class="card o-hidden card-hover">
-								<div
-									class="card-header card-header-top card-header--2 px-0 pt-0">
+								<div class="card-header card-header-top card-header--2 px-0 pt-0">
 									<div class="card-header-title">
 										<h4>最近的訂單</h4>
 									</div>
@@ -373,8 +367,7 @@ List<MasterPicVO2> list2 = dao2.indexNatrix2();
 								<div class="card-body p-0">
 									<div>
 										<div class="table-responsive">
-											<table
-												class="best-selling-table w-image w-image w-image table border-0">
+											<table class="best-selling-table w-image w-image w-image table border-0">
 												<tbody>
 													<c:forEach var="productVO2" items="<%=list2%>">
 														<tr>

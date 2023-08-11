@@ -23,107 +23,62 @@ public class MasterVO {
 	public Integer getM_id() {
 		return m_id;
 	}
-//	public void setP_id(Integer p_id) {
-//		this.p_id = p_id;
-//	}
 
 	public String getM_name() {
 		return m_name;
 	}
-//	public void setP_name(String p_name) {
-//		this.p_name = p_name;
-//	}
 
 	public String getM_pwd() {
 		return m_pwd;
 	}
-//	public void setP_price(Integer p_price) {
-//		this.p_price = p_price;
-//	}
 
 	public String getM_gui() {
 		return m_gui;
 	}
-//	public void setP_stock(Integer p_stock) {
-//		this.p_stock = p_stock;
-//	}
 
 	public String getM_bank_name() {
 		return m_bank_name;
 	}
-//	public void setP_count(Integer p_count) {
-//		this.p_count = p_count;
-//	}
 
 	public String getM_bank_id() {
 		return m_bank_id;
 	}
-//	public void setP_type(Integer p_type) {
-//		this.p_type = p_type;
-//	}
 
 	public String getM_address() {
 		return m_address;
 	}
-//	public void setP_class(Integer p_class) {
-//		this.p_class = p_class;
-//	}
 
 	public LocalDateTime getM_reg() {
 		return m_reg;
 	}
-//	public void setP_upload_time(LocalDateTime localDateTime) {
-//		this.p_upload_time = localDateTime;
-//	}
 
 	public String getM_man_id() {
 		return m_man_id;
 	}
-//	public void setP_des(String p_des) {
-//		this.p_des = p_des;
-//	}
 
 	public String getM_man_name() {
 		return m_man_name;
 	}
-//	public void setP_status(Integer p_status) {
-//		this.p_status = p_status;
-//	}
 
 	public String getM_email() {
 		return m_email;
 	}
-//	public void setP_pic_one(byte[] p_pic_one) {
-//		this.p_pic_one = p_pic_one;
-//	}
 	
 	public String getM_phone() {
 		return m_phone;
 	}
-//	public void setP_pic_two(byte[] p_pic_two) {
-//		this.p_pic_two = p_pic_two;
-//	}
 	
 	public Integer getM_status() {
 		return m_status;
 	}
-//	public void setP_pic_three(byte[] p_pic_three) {
-//		this.p_pic_three = p_pic_three;
-//	}
 	
 	public Integer getGm_id() {
 		return gm_id;
 	}
-//	public void setP_pic_four(byte[] p_pic_four) {
-//		this.p_pic_four = p_pic_four;
-//	}
 	
 	public LocalDateTime getGm_date() {
 		return gm_date;
 	}
-//	public void setP_1(String p_1) {
-//		this.p_1 = p_1;
-//	}
 
 	private MasterVO() {
 		super();

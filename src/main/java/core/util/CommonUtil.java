@@ -20,7 +20,6 @@ public class CommonUtil {
 
 	public static <P> void writePojo2Json(HttpServletResponse response, P pojo) {
 		response.setContentType(JSON_MIME_TYPE);
-//		response.setCharacterEncoding("UTF-8");
 		try (PrintWriter pw = response.getWriter()) {
 			pw.print(GSON.toJson(pojo));
 		} catch (Exception e) {
