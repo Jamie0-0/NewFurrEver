@@ -34,7 +34,6 @@ public class ProductLike {
 	
 	@ManyToOne
 	@JsonIgnore
-//	@JsonManagedReference
 	@JoinColumn(name = "pId", insertable = false, updatable = false)
 	private Product product;
 

@@ -424,6 +424,13 @@
             const orderList = document.getElementById("orderList");
             orderList.innerHTML = "";
 
+
+            
+
+
+
+
+
             orders.forEach(order => {
                 if (order.orderType === orderType) {
                     const orderDiv = document.createElement("div");
@@ -494,7 +501,7 @@
                 createOrderList(selectedType);
             });
 
-            createOrderList("group"); // 預設顯示團購訂單
+            createOrderList("retail"); // 預設顯示團購訂單
         });
 
     </script>
