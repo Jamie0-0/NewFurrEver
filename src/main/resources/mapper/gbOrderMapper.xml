@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- <mapper namespace="Mapper的類別全名"> m-->
 <mapper namespace="tibame.wei.model.gbOrderMapper">
-	<select id="selectGbMember" resultType="tibame.wei.model.GbOrderResult">
+<select id="selectGbMember" resultType="tibame.wei.model.GbOrderResult">
+		select c.uid,c.u_name,a.gb_p_num,gb_t*gb_p_num as gb_t,u_phone,u_address
+		from gb_order a,gb b,product,user c
+		where a.gb_id = b.gb_id
+		and b.gb_p_id=p_id
+		and p_m_id = #{p_m_id}
+		and b.gb_p_id = #{gb_p_id}
+		and a.uid = c.uid;
+</select>
 
-	select * from gb_order
-	
-
-	</select>
 
 </mapper>

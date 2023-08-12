@@ -14,11 +14,12 @@ import tibame.wei.model.GbOrderResult;
 @RequestMapping("/backEnd")
 public class GbInfoController {
 
-	@Autowired
-	private GbOrderMapper GbOrderMapper;
-	
-	@PostMapping("gb-memberList")
-	public List<GbOrderResult> selectGbMember(Integer p_m_id,Integer gb_p_id){
-		return GbOrderMapper.selectGbMember(p_m_id, gb_p_id);
-	}
+    @Autowired
+    private GbOrderMapper gbOrderMapper;
+    
+    @PostMapping("/gb-memberList")
+    public List<GbOrderResult> selectGbMember(Integer p_m_id, Integer gb_p_id) {
+        return gbOrderMapper.selectGbMember(p_m_id, gb_p_id);
+    }
 }
+
