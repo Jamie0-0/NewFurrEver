@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import tibame.articles.service.ArticlesService;
 
@@ -19,7 +20,7 @@ public class ArticleLikeController {
 	}
 
 	@GetMapping("/artLike")
-	private int likeArticle(@RequestParam Integer artId, @RequestParam Integer uid) {
+	private int likeArticle(@SessionAttribute Integer artId, @RequestParam Integer uid) {
 		int status = service.likeArticle(artId, uid);
 		return status;
 	}
