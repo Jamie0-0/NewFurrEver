@@ -159,6 +159,7 @@ public class ProductOrderDAOImpl implements ProductOrderDAO{
 				+ " where a.gb_id = b.gb_id"
 				+ " and b.gb_p_id=p_id"
 				+ " and p_m_id = :p_m_id"
+				+ " and gb_satus = 0"
 				+ " group by a.gb_id,gb_c_max";
 
 	    MapSqlParameterSource paramMap = new MapSqlParameterSource();

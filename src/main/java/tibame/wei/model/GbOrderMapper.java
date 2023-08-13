@@ -20,13 +20,3 @@ public interface GbOrderMapper {
     		+ " and a.uid = c.uid")
     List<GbOrderResult> selectGbMember(@Param("p_m_id") Integer p_m_id, @Param("gb_p_id") Integer gb_p_id);
 }
-
-//@Mapper
-//public interface GbOrderMapper {
-//    List<GbOrderResult> selectGbMember(@Param("p_m_id") Integer p_m_id, @Param("gb_p_id") Integer gb_p_id);
-//}
-
-
-
-
-

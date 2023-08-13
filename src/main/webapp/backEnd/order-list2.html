@@ -282,9 +282,9 @@
 														border-radius: 5px; padding: 5px; font-size: 16px; 
 														margin-right: 6px;">
 														
-														<option value="2">團購狀態</option>
-														<option value="0">已出團</option>
-														<option value="1">未出團</option>
+														<option value="2">出貨狀態</option>
+														<option value="0">已出貨</option>
+														<option value="1">未出貨</option>
 													</select>
 													
 													<button class="search-button" onclick="performSearch()">
@@ -303,7 +303,7 @@
 														<th>門檻人數</th>
 														<th>商品金額</th>
 														<th>結團日期</th>
-														<th>團購狀態</th>
+														<th>出貨狀態</th>
 														<th>團購連結</th>
 													</tr>
 												</thead>
@@ -396,9 +396,9 @@
 						
 						
 						if (gb_s == 0) {
-							row.insertCell().textContent = "已成團";
+							row.insertCell().textContent = "已出貨";
 						} else {
-							row.insertCell().textContent = "未成團";
+							row.insertCell().textContent = "未出貨";
 						}
 
 						let emptyCell = row.insertCell();
@@ -488,9 +488,9 @@
 						
 						
 						if (gb_s == 0) {
-							row.insertCell().textContent = "已成團";
+							row.insertCell().textContent = "已出貨";
 						} else {
-							row.insertCell().textContent = "未成團";
+							row.insertCell().textContent = "未出貨";
 						}
 
 						let emptyCell = row.insertCell();

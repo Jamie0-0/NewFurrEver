@@ -42,6 +42,40 @@
 body {
   font-family: "Arial", "Microsoft JhengHei", sans-serif;
 }
+/* 彈跳視窗樣式 */
+.modal {
+    display: none; /* 初始時隱藏彈跳視窗 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 背景半透明 */
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 5px;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+#customModal h5 {
+    font-size: 24px; /* 調整字體大小，你可以根據需要進行調整 */
+    text-align: center; /* 將文字水平置中 */
+}
 </style>
 
 
@@ -242,9 +276,14 @@ body {
 														</div>
 													</div>
 
+<!-- 													<div class="button-box"> -->
+<!-- 														<button type="button" class="btn  btn--yes btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="javascript:void(0)" onclick="updateForm()">修改</button> -->
+<!-- 													</div> -->
 													<div class="button-box">
-														<button type="button" class="btn  btn--yes btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="javascript:void(0)" onclick="updateForm()">修改</button>
+														<button type="button" class="btn  btn--yes btn-primary" onclick="updateForm()">修改</button>
 													</div>
+
+
 												</div>
 											</form>
 										</div>
@@ -268,23 +307,13 @@ body {
 		</div>
 	</div>
 
-	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-		data-bs-keyboard="false" tabindex="-1"
-		aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog  modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-body">
-					<h5 class="modal-title" id="staticBackdropLabel">修改完成</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-					<div class="button-box">
-						<button id="yesButton" type="button" class="btn  btn--yes btn-primary">Yes</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h5>修改完成</h5>
+            <button class="btn btn-secondary" onclick="closeModal()">關閉</button>
+        </div>
+    </div>
 	<script src="assets/js/jquery-3.6.0.min.js"></script>
 	<script src="assets/js/scrollbar/simplebar.js"></script>
 	<script src="assets/js/scrollbar/custom.js"></script>
@@ -300,6 +329,10 @@ body {
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 	<script>
+	//"
+	//
+	// 
+	
 		function init() {
  			var path = window.location.pathname;
  			var webCtx = path.substring(0, path.indexOf('/', 1));
@@ -362,40 +395,84 @@ body {
 		    alert("請輸入廠商名稱");
 		    return;
 		  }
+		  var regex = /^[a-zA-Z0-9\u4e00-\u9fa5]*$/;
+		  if (!regex.test(m_name)) {
+			  alert("廠商名稱只能包含英文、中文和數字。");
+			  return;
+		  }
 
+		  
+		  
 		  if (m_gui === "") {
 		    alert("請輸入統一編號");
 		    return;
+		  }
+		  var regex = /^[0-9]*$/;
+		  if (!regex.test(m_gui)) {
+			  alert("統一編號只能輸入數字。");
+			  return;
 		  }
 
 		  if (m_bank_id === "") {
 		    alert("請輸入銀行帳號");
 		    return;
 		  }
-		  
+		  var regex = /^[0-9]*$/;
+		  if (!regex.test(m_bank_id)) {
+			  alert("銀行帳號只能輸入數字。");
+			  return;
+		  }
+
 		  if (m_address === "") {
 		    alert("請輸入地址");
 		    return;
 		  }
-		  
+		  var regex = /^[a-zA-Z0-9\u4e00-\u9fa5]*$/;
+		  if (!regex.test(m_address)) {
+			  alert("地址只能包含英文、中文和數字。");
+			  return;
+		  }
+
 		  if (m_man_id === "") {
 		    alert("請輸入身分證字號");
 		    return;
 		  }
-		  
+		  var regex = /^[A-Z][12]\d{8}$/;
+		  if (!regex.test(m_man_id)) {
+			  alert("請輸入正確的身分證號碼。");
+			  return;
+		  }
+
 		  if (m_man_name === "") {
 		    alert("請輸入聯絡人姓名");
 		    return;
 		  }
-		  
+
+		  var regex = /^[a-zA-Z\u4e00-\u9fa5]*$/;
+		  if (!regex.test(m_man_name)) {
+			  alert("姓名只能包含英文和中文。");
+			  return;
+		  }
+
 		  if (m_email === "") {
 		    alert("請輸入電子郵件");
 		    return;
 		  }
-		  
+
+		  var regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+		  if (!regex.test(m_email)) {
+			  alert("請輸入正確的電子信箱格式。");
+			  return;
+		  }
+
 		  if (m_phone === "") {
 		    alert("請輸入手機");
 		    return;
+		  }
+		  var regex = /^09\d{8}$/;
+		  if (!regex.test(m_phone)) {
+			  alert("手機號碼請輸入以 09 開頭的 10 位數字。");
+			  return;
 		  }
 		}
 
@@ -455,16 +532,98 @@ body {
 		  }
 		});
 
-		document.getElementById("yesButton").addEventListener("click", function() {
-		  location.reload();
-		});
-		
-		document.getElementById("logoutLink").addEventListener("click", function() {
-		  window.location.href = "back_index.jsp";
-		});
-		
-
 		function updateForm() {
+			var m_nameT = document.getElementById("m_name").value;
+			var m_guiT = document.getElementById("m_gui").value;
+			var m_bank_idT = document.getElementById("m_bank_id").value;
+			var m_addressT = document.getElementById("m_address").value;
+			var m_man_idT = document.getElementById("m_man_id").value;
+			var m_man_nameT = document.getElementById("m_man_name").value;
+			var m_emailT = document.getElementById("m_email").value;
+			var m_phoneT = document.getElementById("m_phone").value;
+			
+			if (m_nameT === "") {
+			  alert("請輸入廠商名稱");
+			  return;
+			}
+			var regex = /^[a-zA-Z0-9\u4e00-\u9fa5]*$/;
+			if (!regex.test(m_nameT)) {
+			 alert("廠商名稱只能包含英文、中文和數字。");
+			}
+			
+			
+			
+			if (m_guiT === "") {
+			  alert("請輸入統一編號");
+			  return;
+			}
+			var regex = /^[0-9]*$/;
+			if (!regex.test(m_guiT)) {
+			 alert("統一編號只能輸入數字。");
+			 return;
+			}
+			
+			if (m_bank_idT === "") {
+			  alert("請輸入銀行帳號");
+			  return;
+			}
+			var regex = /^[0-9]*$/;
+			if (!regex.test(m_bank_idT)) {
+			 alert("銀行帳號只能輸入數字。");
+			 return;
+			}
+			
+			if (m_addressT === "") {
+			  alert("請輸入地址");
+			  return;
+			}
+			var regex = /^[a-zA-Z0-9\u4e00-\u9fa5]*$/;
+			if (!regex.test(m_addressT)) {
+			 alert("地址只能包含英文、中文和數字。");
+			 return;
+			}
+			
+			if (m_man_idT === "") {
+			  alert("請輸入身分證字號");
+			  return;
+			}
+			var regex = /^[A-Z][12]\d{8}$/;
+			if (!regex.test(m_man_idT)) {
+			 alert("請輸入正確的身分證號碼。");
+			 return;
+			}
+			
+			if (m_man_nameT === "") {
+			  alert("請輸入聯絡人姓名");
+			  return;
+			}
+			
+			var regex = /^[a-zA-Z\u4e00-\u9fa5]*$/;
+			if (!regex.test(m_man_nameT)) {
+			 alert("姓名只能包含英文和中文。");
+			 return;
+			}
+			
+			if (m_emailT === "") {
+			  alert("請輸入電子郵件");
+			  return;
+			}
+			
+			var regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+			if (!regex.test(m_emailT)) {
+			 alert("請輸入正確的電子信箱格式。");
+			 return;
+			}
+			
+			if (m_phoneT === "") {
+			  alert("請輸入手機");
+			  return;
+			}
+			var regex = /^09\d{8}$/;
+			if (!regex.test(m_phoneT)) {
+			 alert("手機號碼請輸入以 09 開頭的 10 位數字。");
+			 return;
+			}
 
             let m_id = "1";
             let m_name = document.getElementById("m_name").value;
@@ -473,12 +632,15 @@ body {
             let m_address = document.getElementById("m_address").value;
             let m_man_id = document.getElementById("m_man_id").value;
             let m_man_name = document.getElementById("m_man_name").value;
-            console.log(document.getElementById("m_email").value);
             let m_email = document.getElementById("m_email").value;
             let m_phone = document.getElementById("m_phone").value;
 
+			var path = window.location.pathname;
+			var webCtx = path.substring(0, path.indexOf('/', 1));
+            
+            
             $.ajax({
-                url: "http://localhost:8081/TirTirCat/mas.do",
+            	url: "http://" + window.location.host + webCtx + "/mas.do",
                 type: "POST",
                 data: {
                     "action": "update",
@@ -494,7 +656,9 @@ body {
                 },
                 dataType: "json",
                 success: function (data) {
-
+                    console.log("Success function triggered");
+                    var modal = document.getElementById("customModal");
+                    modal.style.display = "block";
                 },
                 error: function (xhr) {
                     console.log(xhr);
@@ -504,6 +668,11 @@ body {
                 }
             });
         }
+
+		function closeModal() {
+		    var modal = document.getElementById("customModal");
+		    modal.style.display = "none";
+		}
 	</script>
 </body>
 

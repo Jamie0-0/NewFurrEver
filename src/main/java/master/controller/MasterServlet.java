@@ -53,7 +53,9 @@ public class MasterServlet extends HttpServlet {
 			masSvc.updatePro(m_id,m_name
 					,m_gui,m_bank_id,m_address
 					,m_man_id,m_man_name,m_email,m_phone);
-			}
+			//返還資料到網頁
+			writePojo2Json(res, GSON.toJson("Update successful"));
+		}
 //=============================================================================
 //=============================================================================
 //==================================頁面單一查詢==================================

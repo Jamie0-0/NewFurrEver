@@ -113,6 +113,15 @@
             text-align: center;
             border: none;
         }
+        
+        
+        
+        
+	    .custom-card-body {
+	        max-height: 400px; /* 调整您希望的高度 */
+	        overflow-y: auto; /* 如果内容超过高度，显示纵向滚动条 */
+	    }
+        
     </style>
 </head>
 
@@ -271,7 +280,7 @@
                                 <div class="card-body p-0">
                                     <div>
                                         <div class="table-responsive">
-                                            <table>
+                                            <table id="tableBody">
                                                 <thead>
                                                     <tr>
                                                         <th>會員編號</th>
@@ -283,102 +292,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>阿貓阿狗</td>
-                                                        <td>5</td>
-                                                        <td>500</td>
-                                                        <td>台北市 阿貓區 阿狗街 14巷 1弄 10號</td>
-                                                        <td>0900111222</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>阿貓阿狗2</td>
-                                                        <td>5</td>
-                                                        <td>500</td>
-                                                        <td>台北市 阿貓區 阿狗街 14巷 1弄 10號</td>
-                                                        <td>0900111222</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>阿貓阿狗3</td>
-                                                        <td>5</td>
-                                                        <td>500</td>
-                                                        <td>台北市 阿貓區 阿狗街 14巷 1弄 10號</td>
-                                                        <td>0900111222</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>4</td>
-                                                        <td>阿貓阿狗4</td>
-                                                        <td>5</td>
-                                                        <td>500</td>
-                                                        <td>台北市 阿貓區 阿狗街 14巷 1弄 10號</td>
-                                                        <td>0900111222</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>5</td>
-                                                        <td>阿貓阿狗5</td>
-                                                        <td>5</td>
-                                                        <td>500</td>
-                                                        <td>台北市 阿貓區 阿狗街 14巷 1弄 10號</td>
-                                                        <td>0900111222</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>5</td>
-                                                        <td>阿貓阿狗5</td>
-                                                        <td>5</td>
-                                                        <td>500</td>
-                                                        <td>台北市 阿貓區 阿狗街 14巷 1弄 10號</td>
-                                                        <td>0900111222</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>5</td>
-                                                        <td>阿貓阿狗5</td>
-                                                        <td>5</td>
-                                                        <td>500</td>
-                                                        <td>台北市 阿貓區 阿狗街 14巷 1弄 10號</td>
-                                                        <td>0900111222</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>5</td>
-                                                        <td>阿貓阿狗5</td>
-                                                        <td>5</td>
-                                                        <td>500</td>
-                                                        <td>台北市 阿貓區 阿狗街 14巷 1弄 10號</td>
-                                                        <td>0900111222</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>5</td>
-                                                        <td>阿貓阿狗5</td>
-                                                        <td>5</td>
-                                                        <td>500</td>
-                                                        <td>台北市 阿貓區 阿狗街 14巷 1弄 10號</td>
-                                                        <td>0900111222</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>5</td>
-                                                        <td>阿貓阿狗5</td>
-                                                        <td>5</td>
-                                                        <td>500</td>
-                                                        <td>台北市 阿貓區 阿狗街 14巷 1弄 10號</td>
-                                                        <td>0900111222</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>5</td>
-                                                        <td>阿貓阿狗5</td>
-                                                        <td>5</td>
-                                                        <td>500</td>
-                                                        <td>台北市 阿貓區 阿狗街 14巷 1弄 10號</td>
-                                                        <td>0900111222</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>5</td>
-                                                        <td>阿貓阿狗5</td>
-                                                        <td>5</td>
-                                                        <td>500</td>
-                                                        <td>台北市 阿貓區 阿狗街 14巷 1弄 10號</td>
-                                                        <td>0900111222</td>
-                                                    </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -398,20 +312,16 @@
 
                                 <div class="card-body p-0">
                                     <div>
-                                        <div class="table-responsive">
-                                            <h4>商品名稱:貓貓爪</h4>
-                                            <h4>商品類別:貓用品</h4>
-                                            <h4>成團人數:50人</h4>
-                                            <h4>目前人數:55人</h4>
-                                            <h4>產品價格:500元</h4>
+                                        <div class="table-responsive" id="productDetails">
+
                                         </div>
                                     </div>
                                 </div>
                                 
                                 
                                 
-   								<div class="button-box">
-									<button type="button" class="btn  btn--yes btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="javascript:void(0)" onclick="updateForm()">出團</button>
+								<div class="button-box">
+									<button type="button" class="btn  btn--yes btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="javascript:void(0)" onclick="updateForm()">出貨</button>
 								</div>
                             </div>
                         </div>
@@ -431,22 +341,22 @@
         </div> 
     </div>
 
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <h5 class="modal-title" id="staticBackdropLabel">登出</h5>
-                    <p>是否登出?</p>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <div class="button-box">
-                        <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
-                        <button type="button" class="btn  btn--yes btn-primary">Yes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog  modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-body">
+					<h5 class="modal-title" id="staticBackdropLabel">修改完成，請盡快出貨</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+					<div class="button-box">
+					    <button id="yesButton" type="button" class="btn btn--yes btn-primary">Yes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
     <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="assets/js/scrollbar/simplebar.js"></script>
@@ -462,7 +372,132 @@
     <script src="assets/js/icons/feather-icon/feather.min.js"></script>
     <script src="assets/js/icons/feather-icon/feather-icon.js"></script>
     <script>
-    
+    function init() {
+		var urlParams = new URLSearchParams(window.location.search);
+
+		var gb_id = urlParams.get('gb_id');
+		var p_m_id = urlParams.get('p_m_id');
+
+		var path = window.location.pathname;
+		var webCtx = path.substring(0, path.indexOf('/', 1));
+
+		const url = new URL("http://" + window.location.host + webCtx + "/backEnd/gb-memberList");
+		url.searchParams.append("p_m_id", p_m_id);
+		url.searchParams.append("gb_p_id", gb_id);
+		
+		fetch(url, {
+		    method: "POST",
+		    headers: {
+		        "Content-Type": "application/x-www-form-urlencoded",
+		    },
+		})
+		.then((response) => {
+		    if (!response.ok) {
+		        throw new Error('Network response was not ok');
+		    }
+		    return response.json();
+		})
+		.then((data) => {
+		    console.log(data);
+		    
+
+		    const tableBody = document.getElementById("tableBody");
+
+		    data.forEach(item => {
+		        const row = document.createElement("tr");
+
+		        const uidCell = document.createElement("td");
+		        uidCell.textContent = item.uid;
+		        
+		        const uNameCell = document.createElement("td");
+		        uNameCell.textContent = item.u_name;
+		        
+		        const gbPNumCell = document.createElement("td");
+		        gbPNumCell.textContent = item.gb_p_num;
+
+		        const gbTCell = document.createElement("td");
+		        gbTCell.textContent = item.gb_t;
+
+		        const uAddressCell = document.createElement("td");
+		        uAddressCell.textContent = item.u_address;
+
+		        const uPhoneCell = document.createElement("td");
+		        uPhoneCell.textContent = item.u_phone;
+
+
+
+		        row.appendChild(uidCell);
+		        row.appendChild(uNameCell);
+		        row.appendChild(gbPNumCell);
+		        row.appendChild(gbTCell);
+		        row.appendChild(uAddressCell);
+		        row.appendChild(uPhoneCell);
+		        
+
+		        tableBody.appendChild(row);
+		    });
+		})
+		.catch((error) => {
+		    console.log(error);
+		});
+
+		
+		
+		const url2 = new URL("http://" + window.location.host + webCtx + "/backEnd/gb-productList");
+		url2.searchParams.append("p_m_id", p_m_id);
+		url2.searchParams.append("gb_p_id", gb_id);
+		
+		fetch(url2, {
+		    method: "POST",
+		    headers: {
+		        "Content-Type": "application/x-www-form-urlencoded",
+		    },
+		})
+		.then((response) => {
+		    if (!response.ok) {
+		        throw new Error('Network response was not ok');
+		    }
+		    return response.json();
+		})
+		.then((data) => {
+		    console.log(data);
+		    var productDetailsDiv = document.getElementById("productDetails");
+
+		    for (let i = 0; i < data.length; i++) {
+			    let p_name = data[i].p_name;
+			    let gb_c_max = data[i].gb_c_max;
+			    let gb_s_price = data[i].gb_s_price;
+			    let p_type = data[i].p_type;
+			    let people = data[i].people;
+
+			    let status = "";
+			    if(p_type == 1){
+			    	status = "狗商品";
+			    } else {
+			    	status = "貓商品";
+			    }
+
+			    productDetailsDiv.innerHTML = `
+			    	<h4>商品名稱: ${p_name}</h4>
+			        <h4>商品類別: ${status}</h4>
+			        <h4>成團人數: ${gb_c_max}</h4>
+			        <h4>目前人數: ${people}</h4>
+			        <h4>產品價格: ${gb_s_price}</h4>
+			        <h4>p_m_id: ${p_m_id}</h4>
+			        <h4>gb_p_id: ${gb_id}</h4>
+			    `;
+			}
+		    productDetailsDiv.querySelector("h4:nth-child(6)").style.display = "none"; // p_m_id
+		    productDetailsDiv.querySelector("h4:nth-child(7)").style.display = "none"; // gb_p_id
+		})
+		.catch((error) => {
+		    console.log(error);
+		});
+	}
+
+	window.onload = function() {
+		init();
+	};
     
 
     
@@ -479,49 +514,37 @@
     
 
 		function updateForm() {
-			var orderDetailsContent = $("#orderDetails").html();
-			
-			var tempElement = document.createElement("div");
-			tempElement.innerHTML = orderDetailsContent;
-			
-			var h4Elements = tempElement.querySelectorAll("h4");
-			
-			var memberNumberElement = null;
-			for (var i = 0; i < h4Elements.length; i++) {
-				var h4Text = h4Elements[i].textContent;
-				if (h4Text.includes("會員編號:")) {
-					memberNumberElement = h4Elements[i];
-					break;
-				}
-			}
+			const p_m_id_value = document.querySelector("#productDetails h4:nth-child(6)").textContent.split(":")[1].trim();
+		    const gb_p_id_value = document.querySelector("#productDetails h4:nth-child(7)").textContent.split(":")[1].trim();
 
-			let order_id = 0;
-			if (memberNumberElement) {
-				var memberNumberValue = memberNumberElement.textContent.split(':')[1].trim();
-				order_id = memberNumberValue;
-				console.log("會員編號的值：", memberNumberValue);
-			} else {
-				console.log("找不到會員編號的元素");
-			}
+	        console.log("p_m_id 值為：" + p_m_id_value);
+	        console.log("gb_p_id 值為：" + gb_p_id_value);
 
 			var path = window.location.pathname;
 			var webCtx = path.substring(0, path.indexOf('/', 1));
+
+			const url = new URL("http://" + window.location.host + webCtx + "/backEnd/gb-update");
+			url.searchParams.append("p_m_id", p_m_id_value);
+			url.searchParams.append("gb_p_id", gb_p_id_value);
 			
-			$.ajax({
-				url : "http://" + window.location.host + webCtx + "/backEnd/update-Status",
-				type: "POST",
-				data: {
-					"order_id" : order_id
-				},
-				dataType: "json",
-				success: function (data) {
-				},
-				error: function (xhr) {
-					console.log(xhr);
-				},
-				complete: function (xhr) {
-					console.log(xhr);
-				}
+			fetch(url, {
+			    method: "POST",
+			    headers: {
+			        "Content-Type": "application/x-www-form-urlencoded",
+			    },
+			})
+			.then((response) => {
+			    if (!response.ok) {
+			        throw new Error('Network response was not ok');
+			    }
+			    return response.json();
+			})
+			.then((data) => {
+				console.log("===================");
+    
+			})
+			.catch((error) => {
+			    console.log(error);
 			});
 		}
 
