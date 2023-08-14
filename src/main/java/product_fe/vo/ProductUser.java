@@ -1,166 +1,145 @@
 package product_fe.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class ProductUser {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name = "user")
+public class ProductUser implements Serializable{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column
 	private Integer uid;
-	private String phone;
-	private String name;
-	private String password;
-	private String email;
-	private String addr;
-	private java.util.Date birth;
-	private String gender;
-	private Timestamp uReg;
-	private byte[] uPic;
-	private Integer uReport;
-	private Integer uStatus;
-	private Integer gmID;
-	private Timestamp gmDate;
-	private String about;
-	private String u2;
-	private String u3;
+	@Transient
+	private String u_phone;
+	@Column
+	 private String u_name;
+	@Transient
+	private String u_pwd;
+	@Transient
+	private String u_email;
+	@Transient
+	private String u_address;
+	@Transient
+	private Date u_birth;
+	@Transient
+	private String u_gender;
+	@Transient
+	private Timestamp u_reg;
+	@Transient
+	private byte[] u_pic;
+	@Transient
+	private Integer u_report;
+	@Transient
+	private String u_status;
+	@Transient
+	private Integer gm_ID;
+	@Transient
+	private Timestamp gm_date;
+//	@Transient
+//	private String u_1;
+//	@Transient
+//	private String u_2;
+//	@Transient
+//	private String u_3;
+	public Integer getUid() {
+		return uid;
+	}
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
+	public String getU_phone() {
+		return u_phone;
+	}
+	public void setU_phone(String u_phone) {
+		this.u_phone = u_phone;
+	}
+	public String getU_name() {
+		return u_name;
+	}
+	public void setU_name(String u_name) {
+		this.u_name = u_name;
+	}
+	public String getU_pwd() {
+		return u_pwd;
+	}
+	public void setU_pwd(String u_pwd) {
+		this.u_pwd = u_pwd;
+	}
+	public String getU_email() {
+		return u_email;
+	}
+	public void setU_email(String u_email) {
+		this.u_email = u_email;
+	}
+	public String getU_address() {
+		return u_address;
+	}
+	public void setU_address(String u_address) {
+		this.u_address = u_address;
+	}
+	public Date getU_birth() {
+		return u_birth;
+	}
+	public void setU_birth(Date u_birth) {
+		this.u_birth = u_birth;
+	}
+	public String getU_gender() {
+		return u_gender;
+	}
+	public void setU_gender(String u_gender) {
+		this.u_gender = u_gender;
+	}
+	public Timestamp getU_reg() {
+		return u_reg;
+	}
+	public void setU_reg(Timestamp u_reg) {
+		this.u_reg = u_reg;
+	}
+	public byte[] getU_pic() {
+		return u_pic;
+	}
+	public void setU_pic(byte[] u_pic) {
+		this.u_pic = u_pic;
+	}
+	public Integer getU_report() {
+		return u_report;
+	}
+	public void setU_report(Integer u_report) {
+		this.u_report = u_report;
+	}
+	public String getU_status() {
+		return u_status;
+	}
+	public void setU_status(String u_status) {
+		this.u_status = u_status;
+	}
+	public Integer getGm_ID() {
+		return gm_ID;
+	}
+	public void setGm_ID(Integer gm_ID) {
+		this.gm_ID = gm_ID;
+	}
+	public Timestamp getGm_date() {
+		return gm_date;
+	}
+	public void setGm_date(Timestamp gm_date) {
+		this.gm_date = gm_date;
+	}
 
 //	@OneToMany
 //	@JoinColumn(name = "pet_uid",
 //			referencedColumnName = "uid")
 //	private List<Pet> pets;
 	
-	public Integer getUid() {
-		return uid;
-	}
 
-	public void setUid(Integer uid) {
-		this.uid = uid;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getAddr() {
-		return addr;
-	}
-
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
-
-	public Date getBirth() {
-		java.sql.Date sqlDate = new java.sql.Date(birth.getTime());
-		return sqlDate;
-	}
-
-	public void setBirth(Date birth) {
-		this.birth = birth;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public Timestamp getuReg() {
-		return uReg;
-	}
-
-	public void setuReg(Timestamp uReg) {
-		this.uReg = uReg;
-	}
-
-	public byte[] getuPic() {
-		return uPic;
-	}
-
-	public void setuPic(byte[] uPic) {
-		this.uPic = uPic;
-	}
-
-	public Integer getuReport() {
-		return uReport;
-	}
-
-	public void setuReport(Integer u_report) {
-		this.uReport = u_report;
-	}
-
-	public Integer getuStatus() {
-		return uStatus;
-	}
-
-	public void setuStatus(Integer u_status) {
-		this.uStatus = u_status;
-	}
-
-	public Integer getGmID() {
-		return gmID;
-	}
-
-	public void setGmID(Integer gm_ID) {
-		this.gmID = gm_ID;
-	}
-
-	public Timestamp getGmDate() {
-		return gmDate;
-	}
-
-	public void setGmDate(Timestamp gmDate) {
-		this.gmDate = gmDate;
-	}
-
-	public String getAbout() {
-		return about;
-	}
-
-	public void setAbout(String about) {
-		this.about = about;
-	}
-
-	public String getU2() {
-		return u2;
-	}
-
-	public void setU2(String u2) {
-		this.u2 = u2;
-	}
-
-	public String getU3() {
-		return u3;
-	}
-
-	public void setU3(String u3) {
-		this.u3 = u3;
-	}
 }

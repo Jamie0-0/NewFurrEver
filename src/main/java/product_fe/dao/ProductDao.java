@@ -26,5 +26,6 @@ public interface ProductDao {
 	byte[] selectPicByPid(Integer p_id);
 
 	int updatePStockByPid(Integer p_id, Integer quantity); // 結帳 -> 更新廠商商品數量
-
+	
+	Product selectPNameByPId(int p_id); // 會員訂單用
 }

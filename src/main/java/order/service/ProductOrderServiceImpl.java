@@ -28,6 +28,7 @@ import product_fe.dao.ProductDao;
 import product_fe.dao.ProductDaoImpl;
 import product_fe.dao.ProductUserDao;
 import product_fe.dao.ProductUserDaoImpl;
+import product_fe.vo.Product;
 import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import org.springframework.stereotype.Service;
@@ -127,6 +128,7 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 					subProduct.setP_p_id(cartItem.getItem_p_id());
 					subProduct.setP_m_stock(item_quantity);
 					subProduct.setP_m_price(item_p_price);
+					subProduct.setP_m_name(cartItem.getItem_p_name());
 
 					order_num += item_quantity * item_p_price;
 
@@ -208,6 +210,48 @@ public class ProductOrderServiceImpl implements ProductOrderService {
 			System.out.println("非Redis錯誤");
 		}
 
+	}
+
+	@Override
+	public List<ProductOrder> selectByUid(int uid) {
+		List<ProductOrder> productOrders = productOrderDao.selectAllProductOrderByUid(uid);
+		List<SubOrder> subOrdersForProductOrder = new ArrayList<>();
+
+		for (ProductOrder productOrder : productOrders) {
+			int order_id = productOrder.getOrder_id();
+
+//			List<SubOrder> subOrdersForProductOrder = null;
+
+			List<SubOrder> subOrders = subOrderDao.selectBySoOrderNum(order_id);
+			System.out.println(subOrders);
+			for (SubOrder subOrder : subOrders) {
+				int so_order_id = subOrder.getSo_order_id();
+				System.out.println("so_order_id =" + so_order_id);
+				System.out.println(subOrder);
+
+//				List<SubOrder> subOrdersForProductOrder = productOrder.getSubOrders();
+//				System.out.println(subOrdersForProductOrder);
+				subOrdersForProductOrder.add(subOrder);
+
+				List<SubProduct> subProductsForSubOrder = new ArrayList<>();
+
+				List<SubProduct> subProducts = subProductDao.selectByOrderId(order_id);
+				for (SubProduct subProduct : subProducts) {
+					subProductsForSubOrder.add(subProduct);
+					
+					int p_id = subProduct.getP_p_id();
+					Product product = productDao.selectPNameByPId(p_id);
+					subProduct.setProduct(product);
+					
+					
+				}
+				subOrder.setSubProducts(subProducts);
+			}
+			productOrder.setSubOrders(subOrders);
+
+		}
+
+		return productOrders;
 	}
 
 //	@Override

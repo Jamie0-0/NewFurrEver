@@ -117,67 +117,11 @@
                                     </li>
                                     <!-- 購物車 -->
                                     <li class="right-side">
-                                        <div class="onhover-dropdown header-badge">
+                                        <div>
                                             <button type="button" class="btn p-0 position-relative header-wishlist">
-                                                <i data-feather="shopping-cart"></i>
-                                                <span class="position-absolute top-0 start-100 translate-middle badge">2
-                                                    <span class="visually-hidden">unread messages</span>
-                                                </span>
+                                                <a href="cart.html"><i data-feather="shopping-cart"></i>
+                                                </a>
                                             </button>
-
-                                            <div class="onhover-div">
-                                                <ul class="cart-list">
-                                                    <li class="product-box-contain">
-                                                        <div class="drop-cart">
-                                                            <a href="product-left-thumbnail.html" class="drop-image">
-                                                                <img src="./assets/images/vegetable/product/1.png"
-                                                                    class="blur-up lazyload" alt="">
-                                                            </a>
-
-                                                            <div class="drop-contain">
-                                                                <a href="product-left-thumbnail.html">
-                                                                    <h5>Fantasy Crunchy Choco Chip Cookies</h5>
-                                                                </a>
-                                                                <h6><span>1 x</span> $80.58</h6>
-                                                                <button class="close-button close_button">
-                                                                    <i class="fa-solid fa-xmark"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-                                                    <li class="product-box-contain">
-                                                        <div class="drop-cart">
-                                                            <a href="product-left-thumbnail.html" class="drop-image">
-                                                                <img src="./assets/images/vegetable/product/2.png"
-                                                                    class="blur-up lazyload" alt="">
-                                                            </a>
-
-                                                            <div class="drop-contain">
-                                                                <a href="product-left-thumbnail.html">
-                                                                    <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                                                    </h5>
-                                                                </a>
-                                                                <h6><span>1 x</span> $25.68</h6>
-                                                                <button class="close-button close_button">
-                                                                    <i class="fa-solid fa-xmark"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-
-                                                <div class="price-box">
-                                                    <h5>Total :</h5>
-                                                    <h4 class="theme-color fw-bold">$106.58</h4>
-                                                </div>
-
-                                                <div class="button-group">
-                                                    <a href="cart.html" class="btn btn-sm cart-button">View Cart</a>
-                                                    <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
-                                                    text-white">Checkout</a>
-                                                </div>
-                                            </div>
                                         </div>
                                     </li>
                                     <!-- 聊天室 -->
@@ -502,11 +446,11 @@
 
                                             // 更新用戶資料顯示
                                             const rNameElement = document.getElementById('r_name');
-                                            rNameElement.value = user_info.name;
+                                            rNameElement.value = user_info.u_name;
                                             const rPhoneElement = document.getElementById('r_phone');
-                                            rPhoneElement.value = user_info.phone;
+                                            rPhoneElement.value = user_info.u_phone;
                                             const rAddressElement = document.getElementById('r_address');
-                                            rAddressElement.value = user_info.addr;
+                                            rAddressElement.value = user_info.u_address;
 
                                             const rInfoElement = document.getElementById('r_info');
                                             rInfoElement.setAttribute("r_uid", user_info.uid);
@@ -527,7 +471,7 @@
                                                 <li p_id=${item.p_id} p_m_id=${item.p_m_id} p_price=${item.p_price}>
                                                     <img id="pic_content_${item.p_id}" src="./assets/images/vegetable/product/1.png"
                                                         class="img-fluid blur-up lazyloaded checkout-image" alt="">
-                                                        <h4 class="mr-3">${item.p_name}</h4>
+                                                        <h4 id="p_name" class="mr-3">${item.p_name}</h4>
                                                         <span class="ml-4">X${item.quantity}</span>
                                                         <h4 class="price">$${item.p_price * item.quantity}</h4>
                                                 </li>
@@ -592,12 +536,14 @@
                                             const p_id = $(this).attr('p_id');
                                             const p_m_id = $(this).attr('p_m_id');
                                             const p_price = $(this).attr('p_price'); // 商品單價
+                                            const p_name = $(this).find('#p_name').text().trim();
                                             const quantity = parseInt($(this).find('span').text().trim().replace('X', ''));
                                             const p_total_price = parseFloat($(this).find('.price').text().replace('$', '')); // 商品單價*數量後價格
 
                                             cartList.push({
                                                 item_p_id: p_id,
                                                 item_p_m_id: p_m_id,
+                                                item_p_name: p_name,
                                                 item_p_price: p_price,
                                                 item_quantity: quantity,
                                                 p_total_price: p_total_price
