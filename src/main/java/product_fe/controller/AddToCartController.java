@@ -27,32 +27,21 @@ import redis.clients.jedis.Jedis;
 public class AddToCartController extends HttpServlet {
 
 	private ProductService service;
-	private ProductUserDao memberDao;
 
 	@Override
 	public void init() throws ServletException {
 		service = new ProductServiceImpl();
-		memberDao = new ProductUserDaoImpl();
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 1. 判斷下單數量是否超過商品庫存數量, 若超過則回傳錯誤訊息, 結束方法
-		// 2. 判斷session中是否已有購物車, 沒有的話先new再put
-		// 3. 新增至購物車後, 回傳訊息至前端燈箱訊息
-		// 4. 判斷是否登入??????? 登入的話存入redis?
-
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
 
 		HttpSession session = req.getSession();
 		Gson gson = new Gson();
 		
-		
-		//////
 		String username = (String) session.getAttribute("uName");
-//		int uid = (int) session.getAttribute("uid");
-		ProductUser member= new ProductUser();
 		int uid = 0;
 		
 		HashMap<Integer, Integer> cartList = null;
@@ -60,31 +49,14 @@ public class AddToCartController extends HttpServlet {
 		if (username == null) {
 			cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
 		} else if (username != null) {
-			System.out.println("用到2");
-			System.out.println("username = "+username);
-//			member =  memberDao.selectByUserNameForCart(username);
 			uid = (int) session.getAttribute("uid");
-
-			Jedis jedis = JedisPoolUtil.getJedisPool().getResource();
-			Map<String, String> reddisCartList = jedis.hgetAll("user:" + uid + ":cart.list");
-			
-			if(reddisCartList.isEmpty()) {
-				cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
-				System.out.println("用到reddisCartList.isEmpty()");
-			}else if(!reddisCartList.isEmpty()) {
-				cartList = ProductUtil.mapStringCastToInt(reddisCartList);
-				System.out.println("用到!reddisCartList.isEmpty()");
-			}
-			jedis.close();
+			cartList = service.getCartListMapForMember(session, uid);	
 		}
-		/////
 
 		String p_id_string = req.getParameter("p_id");
 		String quantity_string = req.getParameter("quantity");
-
-//		HashMap<Integer, Integer> cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
-
 		System.out.println("add之前的原本的CartList =" + cartList);
+		
 		service.addToCart(req, p_id_string, quantity_string, cartList);
 		
 		if (username != null) {

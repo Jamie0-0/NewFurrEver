@@ -1,5 +1,6 @@
 package product_fe.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,5 +37,6 @@ public interface ProductService {
 	
 	void deleteCartItemFromRedis(HttpSession session, int uid, int p_id);
 	
+	HashMap<Integer, Integer> getCartListMapForMember(HttpSession session, int uid);
 //	String getCartListAndTotalJSON(Map<Integer, Integer> cartList); //cartcontroller用這個?
 }

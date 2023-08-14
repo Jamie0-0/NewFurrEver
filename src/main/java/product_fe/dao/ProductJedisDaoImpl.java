@@ -27,4 +27,13 @@ public class ProductJedisDaoImpl implements ProductJedisDao {
 		jedis.close();
 		
 	}
+
+	@Override
+	public Map<String, String> getReddisCartList(int uid) {
+		Jedis jedis = pool.getResource();	
+		Map<String, String> reddisCartList = jedis.hgetAll("user:" + uid + ":cart.list");
+		jedis.close();
+		
+		return reddisCartList;
+	}
 }

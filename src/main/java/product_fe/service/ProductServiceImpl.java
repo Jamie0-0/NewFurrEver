@@ -378,13 +378,13 @@ public class ProductServiceImpl implements ProductService {
 			e.printStackTrace();
 			System.out.println("Redis連線失敗");
 		}
-		
+
 	}
 
 	@Override
 	public void deleteCartItemFromRedis(HttpSession session, int uid, int p_id) {
 		String pid = String.valueOf(p_id);
-		
+
 		try {
 			HashMap<Integer, Integer> cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
 			Map<String, String> cartListString = ProductUtil.mapIntToString(cartList);
@@ -394,8 +394,31 @@ public class ProductServiceImpl implements ProductService {
 			System.out.println("Redis連線失敗");
 		}
 
-		
 	}
 
+	@Override
+	public HashMap<Integer, Integer> getCartListMapForMember(HttpSession session, int uid) {
+		HashMap<Integer, Integer> cartList = null;
+		
+		Map<String, String> reddisCartList = productJedisDao.getReddisCartList(uid);
+
+		if (reddisCartList.isEmpty()) {
+			cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
+		} else if (!reddisCartList.isEmpty()) {
+			cartList = ProductUtil.mapStringCastToInt(reddisCartList);
+		}
+
+//		Jedis jedis = JedisPoolUtil.getJedisPool().getResource();
+//		Map<String, String> reddisCartList = jedis.hgetAll("user:" + uid + ":cart.list");
+//
+//		if (reddisCartList.isEmpty()) {
+//			cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
+//		} else if (!reddisCartList.isEmpty()) {
+//			cartList = ProductUtil.mapStringCastToInt(reddisCartList);
+//		}
+//		jedis.close();
+
+		return cartList;
+	}
 
 }
