@@ -24,9 +24,9 @@ public class ProductDAO implements ProductDAO_interface  {
 	}
 
 	private String INSERT_STMT = "INSERT INTO product (p_m_id,p_name,p_price,p_stock,p_type,p_class,p_des,p_status,p_1,p_2,p_3,p_upload_time,p_pic_one,p_pic_two,p_pic_three,p_pic_four) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";;
-	private static final String GET_ONE_STMT = "SELECT * FROM product where p_id = ?";
+	private static final String GET_ONE_STMT = "SELECT * FROM product where p_id = ? and p_m_id=?";
 	private String GET_ONE_STMT2 = "SELECT * FROM FurrEver.product";
-	private static final String DELETE = "DELETE FROM product where p_id=?";
+	private static final String DELETE = "DELETE FROM product where p_id=? and p_m_id=?";
 	private String UPDATE = "UPDATE product set p_name=?,p_price=?,p_stock=?,p_type=?,p_class=?,p_des=?,p_status=?, p_upload_time=?";
 	private static final String GET_ALL_STMT = "SELECT * FROM product where p_m_id=? order by p_id";
 	private static final String GET_NEW_PRO = "SELECT * FROM product order by p_upload_time desc limit 1";
@@ -58,7 +58,7 @@ public class ProductDAO implements ProductDAO_interface  {
 	private static final String GET_TOP_ORD = "	SELECT order_r_name,order_r_phone,order_r_addr,order_t,order_pay,u_pic\r\n"
 			+ "	FROM FurrEver.product_order,FurrEver.sub_order,user\r\n"
 			+ "	where order_id = so_order_id\r\n"
-			+ " and so_m_id = 1\r\n"
+			+ " and so_m_id = ?\r\n"
 			+ "	and uid = order_uid\r\n"
 			+ "	order by order_id limit 3";
 
@@ -180,7 +180,7 @@ public class ProductDAO implements ProductDAO_interface  {
     }
 
     @Override
-    public List<MasterPicVO2> indexNatrix2(){
+    public List<MasterPicVO2> indexNatrix2(Integer mid){
     	List<MasterPicVO2> list = new ArrayList<MasterPicVO2>();
     	MasterPicVO2 masterPicVO2 = null;
     	Connection con = null;
@@ -190,7 +190,11 @@ public class ProductDAO implements ProductDAO_interface  {
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_TOP_ORD);
+			pstmt.setInt(1, mid);
 			rs = pstmt.executeQuery();
+			
+			
+			
 
 			while (rs.next()) {
 				String p1 = "";
@@ -389,7 +393,7 @@ public class ProductDAO implements ProductDAO_interface  {
 				UPDATE = UPDATE+", p_pic_four=?";
 				imgArr.add("four");
 			}
-			UPDATE = UPDATE+" where p_id=?";
+			UPDATE = UPDATE+" where p_id=? and p_m_id=?";
 			pstmt = con.prepareStatement(UPDATE);
 
 			// 這裡是寫每個欄位的輸入
@@ -414,6 +418,7 @@ public class ProductDAO implements ProductDAO_interface  {
 				}
 			}
 			pstmt.setInt(9+imgArr.size(), productVO.getP_id());
+			pstmt.setInt(10+imgArr.size(), productVO.getP_m_id());
 			pstmt.executeUpdate();
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -437,7 +442,7 @@ public class ProductDAO implements ProductDAO_interface  {
 	}
 	
 	@Override
-	public void delete(Integer getP_id) {
+	public void delete(Integer getP_id,Integer mid) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -448,7 +453,7 @@ public class ProductDAO implements ProductDAO_interface  {
 
 			// 這裡是刪除功能，因為getM_id是key值，只要輸入下面一句話，就完成這一整段
 			pstmt.setInt(1, getP_id);
-
+			pstmt.setInt(2, mid);
 			pstmt.executeUpdate();
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
@@ -539,7 +544,7 @@ public class ProductDAO implements ProductDAO_interface  {
 	}
 	
 	@Override
-	public ProductVO findByPrimaryKey(Integer p_id) {
+	public ProductVO findByPrimaryKey(Integer p_id,Integer mid) {
 		ProductVO productVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -551,6 +556,7 @@ public class ProductDAO implements ProductDAO_interface  {
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, p_id);
+			pstmt.setInt(2, mid);
 
 			rs = pstmt.executeQuery();
 
@@ -608,13 +614,13 @@ public class ProductDAO implements ProductDAO_interface  {
 	}
 
 	@Override
-	public List<ProductVO> findByPrimaryKey2(Integer p_id,Integer p_status,Integer p_class) {
+	public List<ProductVO> findByPrimaryKey2(Integer p_id,Integer p_status,Integer p_class,Integer mid) {
 		List<ProductVO> list = new ArrayList<ProductVO>();
 		ProductVO productVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
+		
 		try {
 			con = ds.getConnection();
 			ArrayList imgArr = new ArrayList();
@@ -647,7 +653,7 @@ public class ProductDAO implements ProductDAO_interface  {
 					}
 				}
 			}
-
+			GET_ONE_STMT2 = GET_ONE_STMT2+" and p_m_id = ?";
 			pstmt = con.prepareStatement(GET_ONE_STMT2);
 
 			for(int i = 0;i<imgArr.size();i++) {
@@ -657,6 +663,10 @@ public class ProductDAO implements ProductDAO_interface  {
 					pstmt.setInt(i+1, p_class);
 				} else if(imgArr.get(i).equals("status")) {
 					pstmt.setInt(i+1, p_status);
+				}
+				
+				if(i == imgArr.size()-1) {
+					pstmt.setInt(i+2, mid);
 				}
 			}
 

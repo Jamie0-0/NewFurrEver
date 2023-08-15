@@ -27,6 +27,10 @@ public class ProductServlet extends HttpServlet {
 		res.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		System.out.println("action===="+action);
+		
+		HttpSession session = req.getSession();
+		System.out.println("session============"+(Integer)session.getAttribute("mid"));
+		
 //=============================================================================
 //=============================================================================
 //=====================================單一查詢==================================
@@ -43,6 +47,7 @@ public class ProductServlet extends HttpServlet {
 			Integer p_id = Integer.valueOf(str);
 			Integer p_status = Integer.valueOf(req.getParameter("p_status"));
 			Integer p_class = Integer.valueOf(req.getParameter("p_class"));
+			Integer mid = (Integer)session.getAttribute("mid");
 
 			if (p_id == 0 && p_status == 0 && p_class == 0) {
 				errorMsgs.add("全部查詢");
@@ -55,7 +60,7 @@ public class ProductServlet extends HttpServlet {
 
 			// 開始查詢資料
 			ProductService proSvc = new ProductService();
-			List productVO = proSvc.getOnePro2(p_id, p_status, p_class);
+			List productVO = proSvc.getOnePro2(p_id, p_status, p_class,mid);
 			if (productVO == null) {
 				errorMsgs.add("查無資料，以全部查詢替代");
 			}
@@ -83,11 +88,12 @@ public class ProductServlet extends HttpServlet {
 
 			// 接收請求參數
 			Integer p_id = Integer.valueOf(req.getParameter("p_id"));
+			Integer mid = (Integer)session.getAttribute("mid");
 			String p_status = req.getParameter("p_status");
 
 			// 開始查詢資料
 			ProductService proSvc = new ProductService();
-			ProductVO proVO = proSvc.getOnePro(p_id);
+			ProductVO proVO = proSvc.getOnePro(p_id,mid);
 
 			// 將位元資料流轉換為 Base64 編碼
 			String p1 = "";
@@ -127,6 +133,7 @@ public class ProductServlet extends HttpServlet {
 		if ("update".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
+			Integer mid = (Integer)session.getAttribute("mid");
 
 			// 商品編號一定正確故不檢查
 			Integer p_id = Integer.valueOf(req.getParameter("p_id"));
@@ -201,7 +208,7 @@ public class ProductServlet extends HttpServlet {
 
 			//查詢資料庫是否有紀錄
 			ProductService proSvc2 = new ProductService();
-			ProductVO productVO1 = proSvc2.getOnePro(p_id);
+			ProductVO productVO1 = proSvc2.getOnePro(p_id,mid);
 			Integer p_idSearch = productVO1.getP_id();
 
 			if(p_idSearch == null || p_idSearch == 0) {
@@ -223,6 +230,7 @@ public class ProductServlet extends HttpServlet {
 			}
 
 			ProductVO proVO = new ProductVO.Builder()
+											.setP_m_id(mid)
 											.setP_id(p_id)
 											.setP_name(p_name)
 											.setP_price(Integer.parseInt(p_price))
@@ -269,12 +277,12 @@ public class ProductServlet extends HttpServlet {
 
 			//開始修改資料
 			ProductService proSvc = new ProductService();
-			proVO = proSvc.updatePro(p_name, Integer.parseInt(p_price), Integer.parseInt(p_stock), p_type, p_class,
+			proVO = proSvc.updatePro(mid,p_name, Integer.parseInt(p_price), Integer.parseInt(p_stock), p_type, p_class,
 					p_des, p_status, p_id, p_pic_one, p_pic_two, p_pic_three, p_pic_four);
 
 			//修改完成,準備轉交
 			ProductService proSvc1 = new ProductService();
-			List productVO = proSvc1.getOnePro2(p_id, p_status, p_class);
+			List productVO = proSvc1.getOnePro2(p_id, p_status, p_class,mid);
 			ArrayList<ProductVO> list = (ArrayList<ProductVO>) productVO;
 
 			// 查詢完成,準備轉交
@@ -339,7 +347,7 @@ public class ProductServlet extends HttpServlet {
 				}
 			}
 
-			Integer p_m_id = Integer.parseInt(req.getParameter("p_m_id"));
+			Integer p_m_id = (Integer)session.getAttribute("mid");
 			Integer p_type = Integer.parseInt(req.getParameter("p_type"));
 			Integer p_class = Integer.parseInt(req.getParameter("p_class"));
 			String p_des = req.getParameter("p_des");
@@ -417,11 +425,12 @@ public class ProductServlet extends HttpServlet {
 //=====================================刪除資料==================================
 		if ("delete".equals(action)) {
 			Integer p_id = Integer.valueOf(req.getParameter("p_id"));
+			Integer mid = (Integer)session.getAttribute("mid");
 
 			// 開始刪除資料
 			ProductService proSvc = new ProductService();
 			try {
-				proSvc.deletePro(p_id);
+				proSvc.deletePro(p_id,mid);
 			} catch (Exception e){
 				List<String> errorMsgs = new LinkedList<String>();
 				req.setAttribute("errorMsgs", errorMsgs);

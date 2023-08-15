@@ -36,7 +36,7 @@ public class ProductJDBCDAO implements ProductDAO_interface{
     }
 
     @Override
-    public List<MasterPicVO2> indexNatrix2(){
+    public List<MasterPicVO2> indexNatrix2(Integer mid){
     	
     	
     	
@@ -62,7 +62,7 @@ public class ProductJDBCDAO implements ProductDAO_interface{
 	}
 	
 	@Override
-	public void delete(Integer getP_id) {
+	public void delete(Integer getP_id,Integer mid) {
 
 	}
 	
@@ -138,11 +138,11 @@ public class ProductJDBCDAO implements ProductDAO_interface{
 	}
 	
 	@Override
-	public ProductVO findByPrimaryKey(Integer p_id) {
+	public ProductVO findByPrimaryKey(Integer p_id,Integer mid) {
 		return null;
 	}
 	
-	public List<ProductVO> findByPrimaryKey2(Integer p_id,Integer p_status,Integer p_class) {
+	public List<ProductVO> findByPrimaryKey2(Integer p_id,Integer p_status,Integer p_class,Integer mid) {
 		return null;
 	}
 }

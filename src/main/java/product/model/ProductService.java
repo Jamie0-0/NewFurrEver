@@ -46,7 +46,7 @@ public class ProductService {
 		return productVO;
 	}
 
-	public ProductVO updatePro(String p_name,
+	public ProductVO updatePro(Integer mid,String p_name,
 			Integer p_price, Integer p_stock, Integer p_type,
 			Integer p_class, String p_des, Integer p_status, Integer p_id,
 			byte[] p_pic_one,byte[] p_pic_two,byte[] p_pic_three,byte[] p_pic_four) {
@@ -66,22 +66,23 @@ public class ProductService {
 											.setP_pic_four(p_pic_four)
 									        .setP_upload_time(localDateTime)
 											.setP_id(p_id)
+											.setP_id(mid)
 											.build();
 		dao.update(productVO);
 
 		return productVO;
 	}
 
-	public void deletePro(Integer p_id) {
-		dao.delete(p_id);
+	public void deletePro(Integer p_id,Integer mid) {
+		dao.delete(p_id,mid);
 	}
 
-	public ProductVO getOnePro(Integer p_id) {
-		return dao.findByPrimaryKey(p_id);
+	public ProductVO getOnePro(Integer p_id,Integer mid) {
+		return dao.findByPrimaryKey(p_id,mid);
 	}
-	
-	public List<ProductVO> getOnePro2(Integer p_id,Integer p_status,Integer p_class) {
-		return dao.findByPrimaryKey2(p_id,p_status,p_class);
+
+	public List<ProductVO> getOnePro2(Integer p_id,Integer p_status,Integer p_class,Integer mid) {
+		return dao.findByPrimaryKey2(p_id,p_status,p_class,mid);
 	}
 
 	public List<ProductVO> getAll() {

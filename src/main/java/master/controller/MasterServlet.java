@@ -29,6 +29,7 @@ public class MasterServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		res.setCharacterEncoding("UTF-8");
+		HttpSession session = req.getSession();
 		String action = req.getParameter("action");
 		
 //=============================================================================
@@ -36,8 +37,9 @@ public class MasterServlet extends HttpServlet {
 //==================================遞出修改請求==================================
 		System.out.println("action====="+action);
 		if ("update".equals(action)) {
+			
 			//取得網頁傳來資資料
-			Integer m_id = Integer.valueOf(req.getParameter("m_id"));
+			Integer m_id = (Integer)session.getAttribute("mid");
 			String m_name = String.valueOf(req.getParameter("m_name"));
 			String m_gui = String.valueOf(req.getParameter("m_gui"));
 			String m_bank_id = String.valueOf(req.getParameter("m_bank_id"));
@@ -63,7 +65,7 @@ public class MasterServlet extends HttpServlet {
 			
 			//查詢資料
 			MasterService masSvc = new MasterService();
-			Integer m_id = Integer.valueOf(req.getParameter("m_id"));
+			Integer m_id = (Integer)session.getAttribute("mid");
 			MasterVO mVO = masSvc.getOnePro(m_id);
 
 			//資料塞入masterVO2

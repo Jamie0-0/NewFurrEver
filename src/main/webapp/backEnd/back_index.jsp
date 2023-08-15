@@ -6,11 +6,11 @@
 
 <%
 ProductDAO dao = new ProductDAO();
-ProductVO iValue = dao.indexValue(1);
+ProductVO iValue = dao.indexValue((Integer)session.getAttribute("mid"));
 
 ProductDAO dao2 = new ProductDAO();
-List<MasterPicVO> list1 = dao2.indexNatrix1(1);
-List<MasterPicVO2> list2 = dao2.indexNatrix2();
+List<MasterPicVO> list1 = dao2.indexNatrix1((Integer)session.getAttribute("mid"));
+List<MasterPicVO2> list2 = dao2.indexNatrix2((Integer)session.getAttribute("mid"));
 %>
 
 
