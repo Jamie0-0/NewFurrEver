@@ -382,7 +382,7 @@ tr:hover {
 			var order_id = urlParams.get('order_id');
 			var order_s = urlParams.get('order_s');
 			var order_uid = urlParams.get('order_uid');
-
+			var so_m_id = sessionStorage.getItem("mid");
 			var path = window.location.pathname;
 			var webCtx = path.substring(0, path.indexOf('/', 1));
 
@@ -390,7 +390,7 @@ tr:hover {
 				url : "http://" + window.location.host + webCtx + "/backEnd/personal-Search",
 				type : "POST",
 				data : {
-					"so_m_id" : 1,
+					"so_m_id" : so_m_id,
 					"order_uid" : order_uid,
 					"order_s" : order_s,
 					"order_id" : order_id
@@ -441,7 +441,7 @@ tr:hover {
 				url : "http://" + window.location.host + webCtx + "/backEnd/detial-Search",
 				type : "POST",
 				data : {
-					"so_m_id" : 1,
+					"so_m_id" : so_m_id,
 					"order_uid" : order_uid,
 					"order_s" : order_s,
 					"order_id" : order_id
@@ -513,7 +513,6 @@ tr:hover {
 		    }
 			
 			
-
 			var path = window.location.pathname;
 			var webCtx = path.substring(0, path.indexOf('/', 1));
 

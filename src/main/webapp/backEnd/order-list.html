@@ -342,6 +342,7 @@ tr:hover {
 	<script src="assets/js/icons/feather-icon/feather-icon.js"></script>
 	<script>
 		function init() {
+			var so_m_id = sessionStorage.getItem("mid");
 			var path = window.location.pathname;
 			var webCtx = path.substring(0, path.indexOf('/', 1));
 
@@ -349,7 +350,7 @@ tr:hover {
 				url : "http://" + window.location.host + webCtx + "/backEnd/order-listValue",
 				type : "POST",
 				data : {
-					"so_m_id" : 1
+					"so_m_id" : so_m_id
 				},
 				dataType : "json",
 
@@ -434,6 +435,7 @@ tr:hover {
 		};
 
 		function performSearch() {
+			var so_m_id = sessionStorage.getItem("mid");
 			var order_id = document.getElementById("order_id").value;
 			var order_s = document.getElementById("order_s").value;
 			var table = document.getElementById("orderTable");
@@ -447,7 +449,7 @@ tr:hover {
 				url : "http://" + window.location.host + webCtx + "/backEnd/order-Search",
 				type : "POST",
 				data : {
-					"so_m_id"  :1,
+					"so_m_id"  : so_m_id,
 					"order_id" : order_id,
 					"order_s" : order_s
 				},
@@ -533,23 +535,6 @@ tr:hover {
 			});
 
 		}
-
-// 		var editButtons = document.querySelectorAll('.btntrans');
-// 		editButtons.forEach(function(button) {
-// 		  button.addEventListener('click', function() {
-// 		    var row = this.closest('tr');
-// 		    var order_id = row.cells[0].textContent;
-// 		    var order_uid = row.cells[1].textContent;
-// 		    var dataToStore = {
-// 		      order_id: order_id,
-// 		      order_uid: order_uid
-// 		    };
-// 		    console.log("這裡是storegy===========================")
-// 		    sessionStorage.setItem('orderData', JSON.stringify(dataToStore));
-// 		    window.location.href = 'order-detail.html';
-// 		  });
-// 		});
-
 	</script>
 </body>
 

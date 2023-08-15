@@ -334,6 +334,7 @@ body {
 	// 
 	
 		function init() {
+			var m_id = sessionStorage.getItem("mid");
  			var path = window.location.pathname;
  			var webCtx = path.substring(0, path.indexOf('/', 1));
 
@@ -342,7 +343,7 @@ body {
 				type : "POST",
 				data : {
 					"action" : "getOneSearch",
-					"m_id" : "1"
+					"m_id" : m_id
 				},
 				dataType : "json",
 
@@ -625,7 +626,7 @@ body {
 			 return;
 			}
 
-            let m_id = "1";
+			let m_id = sessionStorage.getItem("mid");
             let m_name = document.getElementById("m_name").value;
             let m_gui = document.getElementById("m_gui").value;
             let m_bank_id = document.getElementById("m_bank_id").value;
