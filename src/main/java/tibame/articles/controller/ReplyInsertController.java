@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import tibame.articles.service.ReplyService;
 import tibame.articles.vo.Reply;
@@ -20,10 +21,9 @@ public class ReplyInsertController {
 
 	@PostMapping("/replyInsert") // 後OK 前端form表單就不能用RequestBody接
 	public String insertReply(@RequestParam String replyContent, @RequestParam Integer replyComId,
-			@RequestParam Integer replyUserId) {
+			@SessionAttribute Integer uid) {
 
-		Reply reply = Reply.builder().replyContent(replyContent).replyComId(replyComId).replyUserId(replyUserId)
-				.build();
+		Reply reply = Reply.builder().replyContent(replyContent).replyComId(replyComId).replyUserId(uid).build();
 
 		service.insertReply(reply);
 

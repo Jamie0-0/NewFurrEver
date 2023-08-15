@@ -229,9 +229,7 @@
             <div class="col pet_infor h5">
                 <a href="pet.html">毛孩資訊</a>
             </div>
-            <div class="col friend h5">
-                <a href="freind.html">好友列表</a>
-            </div>
+
             <div class="col act_list h5">
                 <a href="trip.html">活動清單</a>
             </div>
@@ -241,9 +239,7 @@
             <div class="col order_list h5">
                 <a href="myOrder.html">訂單</a>
             </div>
-            <div class="col article h5">
-                <a href="myarticle.html">文章管理</a>
-            </div>
+
         </div>
     </div>
     <hr>
@@ -387,7 +383,8 @@
 
     <script>
         const uid = sessionStorage.getItem("uid");
-        $("h5").text(uid);
+        const username = sessionStorage.getItem("username");
+        $("h5").text(username);
         const activitiesContainer = document.getElementById("activitiesContainer");
 
         function showOngoingActivities() {
@@ -611,8 +608,8 @@
                                 .then(response => response.json())
                                 .then(data => {
                                     // console.log(data);  
-                                    showActivities(data, false, false, false, true, false, false, false);
-                                    // location.reload();
+                                    // showActivities(data, false, false, false, true, false, false, false);
+                                    location.reload();
                                 })
                                 .catch(error => {
                                     console.error('發生錯誤：', error);
@@ -648,8 +645,8 @@
                                     // 在這裡處理從後端獲取到的活動資料
                                     // console.log(data);
 
-                                    showActivities(data, false, false, false, true, false, false, false);
-                                    // location.reload();
+                                    // showActivities(data, false, false, false, true, false, false, false);
+                                    location.reload();
                                 })
                                 .catch(error => {
                                     console.error('發生錯誤：', error);
