@@ -1,4 +1,4 @@
-package tibame.trip.vo;
+package tibame.mytrip.vo;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,7 +26,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Trip {
+public class MyTrip {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -104,9 +104,9 @@ public class Trip {
 	
 	@OneToMany(mappedBy = "participants")
 	@JsonIgnoreProperties("likeactivity")
-    private List<Participant> participants;
+    private List<MyParticipant> participants;
 
     @OneToMany(mappedBy = "likeactivity")
     @JsonIgnoreProperties("participants")
-    private List<ActLike> actLikes;
+    private List<MyActLike> actLikes;
 }

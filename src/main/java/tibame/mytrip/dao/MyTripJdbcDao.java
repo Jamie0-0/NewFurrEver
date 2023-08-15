@@ -1,4 +1,4 @@
-package tibame.trip.dao;
+package tibame.mytrip.dao;
 
 import java.util.List;
 
@@ -8,15 +8,15 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import tibame.trip.vo.Trip;
+import tibame.mytrip.vo.MyTrip;
 
 @Component
-public class TripJdbcDao {
+public class MyTripJdbcDao {
 
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-	public List<Trip> findMyEndTripByUid(Integer uid) {
+	public List<MyTrip> findMyEndTripByUid(Integer uid) {
 		String sql = "SELECT " + "    trip.uid, trip.t_act_id, trip.t_act_name, trip.t_act_status, "
 				+ "    trip.t_act_time, trip.t_act_ppl, trip.t_1, " + "    IFNULL(COUNT(p.uid), 0) as count " + "FROM "
 				+ "    trip as trip " + "LEFT JOIN " + "    participant as p ON trip.t_act_id = p.t_act_id " + "WHERE "
@@ -28,11 +28,11 @@ public class TripJdbcDao {
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		paramMap.addValue("uid", uid);
 
-		List<Trip> trips = namedParameterJdbcTemplate.query(sql, paramMap, new BeanPropertyRowMapper<>(Trip.class));
+		List<MyTrip> trips = namedParameterJdbcTemplate.query(sql, paramMap, new BeanPropertyRowMapper<>(MyTrip.class));
 		return trips;
 	}
 
-	public List<Trip> findMyHoldTripByUid(Integer uid) {
+	public List<MyTrip> findMyHoldTripByUid(Integer uid) {
 		String sql = "SELECT " + "    trip.uid, trip.t_act_id, trip.t_act_name, trip.t_act_status, "
 				+ "    trip.t_act_time, trip.t_act_ppl, trip.t_1, " + "    IFNULL(COUNT(p.uid), 0) as count " + "FROM "
 				+ "    trip as trip " + "LEFT JOIN " + "    participant as p ON trip.t_act_id = p.t_act_id " + "WHERE "
@@ -44,11 +44,11 @@ public class TripJdbcDao {
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		paramMap.addValue("uid", uid);
 
-		List<Trip> trips = namedParameterJdbcTemplate.query(sql, paramMap, new BeanPropertyRowMapper<>(Trip.class));
+		List<MyTrip> trips = namedParameterJdbcTemplate.query(sql, paramMap, new BeanPropertyRowMapper<>(MyTrip.class));
 		return trips;
 	}
 
-	public List<Trip> findJoinTripByUid(Integer uid) {
+	public List<MyTrip> findJoinTripByUid(Integer uid) {
 		String sql = "SELECT p.uid, trip.t_act_id, trip.t_act_name, trip.t_act_status, trip.t_act_time, trip.t_act_ppl, trip.t_1, IFNULL(COUNT(p.uid), 0) as count "
 				+ "	FROM trip as trip LEFT JOIN participant as p "
 				+ "	ON trip.t_act_id = p.t_act_id "
@@ -60,11 +60,11 @@ public class TripJdbcDao {
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		paramMap.addValue("uid", uid);
 
-		List<Trip> trips = namedParameterJdbcTemplate.query(sql, paramMap, new BeanPropertyRowMapper<>(Trip.class));
+		List<MyTrip> trips = namedParameterJdbcTemplate.query(sql, paramMap, new BeanPropertyRowMapper<>(MyTrip.class));
 		return trips;
 	}
 	
-	public List<Trip> findJoinHistoryTripByUid(Integer uid) {
+	public List<MyTrip> findJoinHistoryTripByUid(Integer uid) {
 		String sql = "SELECT p.uid, trip.t_act_id, trip.t_act_name, trip.t_act_status, trip.t_act_time, trip.t_act_ppl, trip.t_1, IFNULL(COUNT(p.uid), 0) as countp "
 				+ "	FROM trip as trip LEFT JOIN participant as p "
 				+ "		ON trip.t_act_id = p.t_act_id "
@@ -76,11 +76,11 @@ public class TripJdbcDao {
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		paramMap.addValue("uid", uid);
 
-		List<Trip> trips = namedParameterJdbcTemplate.query(sql, paramMap, new BeanPropertyRowMapper<>(Trip.class));
+		List<MyTrip> trips = namedParameterJdbcTemplate.query(sql, paramMap, new BeanPropertyRowMapper<>(MyTrip.class));
 		return trips;
 	}
 	
-	public List<Trip> findTraceTripByUid(Integer uid) {
+	public List<MyTrip> findTraceTripByUid(Integer uid) {
 		String sql = "select * "
 				+ "from trip p "
 				+ "left join act_like ac "
@@ -90,7 +90,7 @@ public class TripJdbcDao {
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
 		paramMap.addValue("uid", uid);
 
-		List<Trip> trips = namedParameterJdbcTemplate.query(sql, paramMap, new BeanPropertyRowMapper<>(Trip.class));
+		List<MyTrip> trips = namedParameterJdbcTemplate.query(sql, paramMap, new BeanPropertyRowMapper<>(MyTrip.class));
 		return trips;
 	}
 	

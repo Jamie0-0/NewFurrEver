@@ -1,4 +1,4 @@
-package tibame.trip.dao;
+package tibame.mytrip.dao;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
 
-import tibame.trip.vo.Trip;
+import tibame.mytrip.vo.MyTrip;
 
 @Component
-public interface TripDao extends CrudRepository<Trip, Integer> {
+public interface MyTripDao extends CrudRepository<MyTrip, Integer> {
 	
 	
 	
@@ -51,7 +51,7 @@ public interface TripDao extends CrudRepository<Trip, Integer> {
 			+ "	on t.t_act_id = ac.t_act_id "
 			+ "where ac.uid = ?1 "
 			+ "group by t.uid, t.t_act_id, t.t_act_name, t.t_act_status, t.t_act_time, t.t_act_ppl, t.t_1 ", nativeQuery = true)
-	List<Trip> findByAUid(Integer uid);
+	List<MyTrip> findByAUid(Integer uid);
 	
 	
 }

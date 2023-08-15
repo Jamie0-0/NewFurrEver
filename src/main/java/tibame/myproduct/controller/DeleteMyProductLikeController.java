@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import tibame.myproduct.service.ProductService;
+import tibame.myproduct.service.MyProductService;
 
 @RestController
 @RequestMapping("deletemyproductlike")
 public class DeleteMyProductLikeController {
 
 	@Autowired
-	private ProductService productService;
+	private MyProductService productService;
 	
 	@PostMapping
 	public ResponseEntity<?> delete (HttpSession session, @RequestParam Integer pid){

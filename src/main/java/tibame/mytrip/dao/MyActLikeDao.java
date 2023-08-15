@@ -5,10 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
-import tibame.mytrip.vo.ActLike;
+import tibame.mytrip.vo.MyActLike;
 
 @Component
-public interface ActLikeDao extends CrudRepository<ActLike, Integer>{
+public interface MyActLikeDao extends CrudRepository<MyActLike, Integer>{
 	
 	@Modifying
 	@Query(value = "delete from act_like where t_act_id = ?1 and uid = ?2 ", nativeQuery = true)

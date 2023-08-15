@@ -21,9 +21,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@IdClass(ActLikeId.class)
+@IdClass(MyActLikeId.class)
 @JsonIgnoreProperties("likeactivity")
-public class ActLike {
+public class MyActLike {
 
 	@Id
 	@Column(name = "t_act_id")
@@ -35,5 +35,5 @@ public class ActLike {
 
 	@ManyToOne
 	@JoinColumn(name = "tActId", insertable = false, updatable = false)
-	private Trip likeactivity;
+	private MyTrip likeactivity;
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import tibame.myproduct.vo.MyProduct;
 
 @Component
-public class ProductJdbcDao {
+public class MyProductJdbcDao {
 
 	@Autowired
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;

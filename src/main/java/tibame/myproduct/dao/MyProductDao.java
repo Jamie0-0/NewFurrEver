@@ -1,4 +1,4 @@
-package tibame.product.dao;
+package tibame.myproduct.dao;
 
 import java.util.List;
 
@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
-import tibame.product.vo.Product;
+import tibame.myproduct.vo.MyProduct;
 
 @Component
-public interface ProductDao extends CrudRepository<Product, Integer>{
+public interface MyProductDao extends CrudRepository<MyProduct, Integer>{
 
 	@Query(value = "select * \r\n"
 			+ "from \r\n"
@@ -17,6 +17,6 @@ public interface ProductDao extends CrudRepository<Product, Integer>{
 			+ "    join product_like pl\r\n"
 			+ "		on p.p_id = pl.pl_p_id\r\n"
 			+ "where pl.pl_uid = ?1", nativeQuery = true)
-	List<Product> findByUid (Integer uid);
+	List<MyProduct> findByUid (Integer uid);
 		
 }

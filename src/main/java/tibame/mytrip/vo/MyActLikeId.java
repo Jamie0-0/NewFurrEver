@@ -1,6 +1,8 @@
-package tibame.product.vo;
+package tibame.mytrip.vo;
 
 import java.io.Serializable;
+
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,14 +16,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductLikeId implements Serializable{
+public class MyActLikeId implements Serializable {
 
-	private static final long serialVersionUID = -4775503562459412482L;
+    private static final long serialVersionUID = 1311253558836476902L;
 
+    @Id
+	private Integer tActId;
 
-	public Integer plUid;
-	
+	@Id
+	private Integer uid;
 
-	public Integer plPId;
 
 }

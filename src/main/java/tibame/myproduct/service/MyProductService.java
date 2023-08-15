@@ -4,7 +4,7 @@ import java.util.List;
 
 import tibame.myproduct.vo.MyProduct;
 
-public interface ProductService {
+public interface MyProductService {
 
 	List<MyProduct> showMyProduct(Integer uid);
 	

@@ -1,4 +1,4 @@
-package tibame.trip.service.impl;
+package tibame.mytrip.service.impl;
 
 import java.util.List;
 
@@ -7,26 +7,26 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import tibame.trip.dao.ActLikeDao;
-import tibame.trip.dao.TripDao;
-import tibame.trip.dao.TripJdbcDao;
-import tibame.trip.service.TripService;
-import tibame.trip.vo.Trip;
+import tibame.mytrip.dao.MyActLikeDao;
+import tibame.mytrip.dao.MyTripDao;
+import tibame.mytrip.dao.MyTripJdbcDao;
+import tibame.mytrip.service.MyTripService;
+import tibame.mytrip.vo.MyTrip;
 
 @Component
-public class TripServiceImpl implements TripService {
+public class MyTripServiceImpl implements MyTripService {
 
 	@Autowired
-	private TripDao tripDao;
+	private MyTripDao tripDao;
 
 	@Autowired
-	private ActLikeDao actLikeDao;
+	private MyActLikeDao actLikeDao;
 
 	@Autowired
-	private TripJdbcDao tripJdbcDao;
+	private MyTripJdbcDao tripJdbcDao;
 
 	@Override
-	public List<Trip> selectMyEndTrip(Integer uid) {
+	public List<MyTrip> selectMyEndTrip(Integer uid) {
 		return tripJdbcDao.findMyEndTripByUid(uid);
 	}
 
@@ -45,7 +45,7 @@ public class TripServiceImpl implements TripService {
 	}
 
 	@Override
-	public List<Trip> findTraceTrips(Integer uid) {
+	public List<MyTrip> findTraceTrips(Integer uid) {
 		return tripJdbcDao.findTraceTripByUid(uid);
 	}
 
@@ -58,17 +58,17 @@ public class TripServiceImpl implements TripService {
 	}
 
 	@Override
-	public List<Trip> selectMyHoldTrip(Integer uid) {
+	public List<MyTrip> selectMyHoldTrip(Integer uid) {
 		return tripJdbcDao.findMyHoldTripByUid(uid);
 	}
 
 	@Override
-	public List<Trip> selectJoinTrip(Integer uid) {
+	public List<MyTrip> selectJoinTrip(Integer uid) {
 		return tripJdbcDao.findJoinTripByUid(uid);
 	}
 
 	@Override
-	public List<Trip> selectHistoryJoinTrip(Integer uid) {
+	public List<MyTrip> selectHistoryJoinTrip(Integer uid) {
 		return tripJdbcDao.findJoinHistoryTripByUid(uid);
 	}
 

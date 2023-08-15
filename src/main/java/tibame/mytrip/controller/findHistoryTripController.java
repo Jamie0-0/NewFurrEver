@@ -13,22 +13,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import tibame.mytrip.service.TripService;
-import tibame.mytrip.vo.Trip;
+import tibame.mytrip.service.MyTripService;
+import tibame.mytrip.vo.MyTrip;
 
 @RestController
 @RequestMapping("findhistorytrip")
 public class findHistoryTripController {
 
 	@Autowired
-	private TripService tripService;
+	private MyTripService tripService;
 
 	@PostMapping
 	public ResponseEntity<?> findHistorytrip(HttpSession session) {
 		Integer uid = (Integer) session.getAttribute("uid");
 		Map<String, Object> response = new HashMap<>();
 		if (uid != null) {
-			List<Trip> triplist = tripService.selectMyEndTrip(uid);
+			List<MyTrip> triplist = tripService.selectMyEndTrip(uid);
 			if (triplist.isEmpty()) {
 				response.put("noAct",0);
 				return ResponseEntity.ok(response);
