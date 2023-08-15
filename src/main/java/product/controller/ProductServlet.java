@@ -26,11 +26,10 @@ public class ProductServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		res.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		System.out.println("action===="+action);
-		
 		HttpSession session = req.getSession();
-		System.out.println("session============"+(Integer)session.getAttribute("mid"));
-		
+
+		System.out.println("action===="+action);
+
 //=============================================================================
 //=============================================================================
 //=====================================單一查詢==================================
@@ -93,6 +92,7 @@ public class ProductServlet extends HttpServlet {
 
 			// 開始查詢資料
 			ProductService proSvc = new ProductService();
+
 			ProductVO proVO = proSvc.getOnePro(p_id,mid);
 
 			// 將位元資料流轉換為 Base64 編碼

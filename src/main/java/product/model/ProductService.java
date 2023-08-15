@@ -66,7 +66,7 @@ public class ProductService {
 											.setP_pic_four(p_pic_four)
 									        .setP_upload_time(localDateTime)
 											.setP_id(p_id)
-											.setP_id(mid)
+											.setP_m_id(mid)
 											.build();
 		dao.update(productVO);
 

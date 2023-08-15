@@ -412,7 +412,7 @@
 						let inputPid = document.createElement("input");
 						inputPid.type = "hidden";
 						inputPid.name = "p_m_id";
-						inputPid.value = 1;//先寫死
+						inputPid.value = m_id;
 						
 						let inputGbid = document.createElement("input");
 						inputGbid.type = "hidden";
@@ -505,7 +505,12 @@
 						let inputPid = document.createElement("input");
 						inputPid.type = "hidden";
 						inputPid.name = "p_m_id";
-						inputPid.value = 1;//先寫死
+						inputPid.value = m_id;//先寫死
+						
+						let inputGbid = document.createElement("input");
+						inputGbid.type = "hidden";
+						inputGbid.name = "gb_id";
+						inputGbid.value = gb_id;
 
 						let button = document.createElement("button");
 						button.type = "submit";
@@ -517,6 +522,7 @@
 						button.appendChild(icon);
 
 						form.appendChild(inputPid);
+						form.appendChild(inputGbid);
 						form.appendChild(button);
 
 						emptyCell.appendChild(form);
