@@ -20,7 +20,7 @@ public class ArticleLikeController {
 	}
 
 	@GetMapping("/artLike")
-	private int likeArticle(@SessionAttribute Integer artId, @RequestParam Integer uid) {
+	private int likeArticle(@RequestParam Integer artId, @SessionAttribute Integer uid) {
 		int status = service.likeArticle(artId, uid);
 		return status;
 	}
