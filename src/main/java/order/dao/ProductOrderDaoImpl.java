@@ -1,13 +1,18 @@
 package order.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import order.vo.ProductOrder;
@@ -31,13 +36,13 @@ public class ProductOrderDaoImpl implements ProductOrderDao {
 	@PersistenceContext
     private EntityManager entityManager;
 
-//	public ProductOrderDaoImpl() {
-//		try {
-//			ds = (DataSource) new InitialContext().lookup("java:comp/env/jdbc/FurrEver");
-//		} catch (NamingException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public ProductOrderDaoImpl() {
+		try {
+			ds = (DataSource) new InitialContext().lookup("java:comp/env/jdbc/FurrEver");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public int insertProductOrder(ProductOrder productOrder) {
@@ -128,6 +133,30 @@ public class ProductOrderDaoImpl implements ProductOrderDao {
 		jedis.del("user:" + uid + ":cart.list", uid);
 		jedis.close();
 
+	}
+
+	@Override
+	public List<ProductOrder> selectAllProductOrderByUid(int uid) {
+		String sql = "select order_uid, order_id, order_t from product_order where order_uid = ?;";
+		var list = new ArrayList<ProductOrder>();
+
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setInt(1, uid);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				ProductOrder productOrder = new ProductOrder();
+				productOrder.setOrder_id(rs.getInt("order_id"));
+				productOrder.setOrder_uid(uid);
+				productOrder.setOrder_t(rs.getInt("order_t"));
+
+				list.add(productOrder);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 //	@Override

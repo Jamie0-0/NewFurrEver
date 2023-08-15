@@ -26,20 +26,17 @@ public class ProductDaoImpl implements ProductDao {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	private Session getSession() {
 		return HibernateUtil.getSessionFactory().getCurrentSession();
 	}
-	
 
 	@Override
 	public List<Product> selectAll() {
 		String selectAllSql = "select * from product;";
 		var list = new ArrayList<Product>();
 
-		try (Connection conn = ds.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(selectAllSql)) {
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(selectAllSql)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Product product = new Product();
@@ -70,14 +67,13 @@ public class ProductDaoImpl implements ProductDao {
 		}
 		return list;
 	}
-	
+
 	@Override
-	public List<Product> selectForShop(){
+	public List<Product> selectForShop() {
 		String selectAllSql = "SELECT p_id, p_name, p_price, p_type, p_class FROM product WHERE p_status = 1;";
 		var list = new ArrayList<Product>();
 
-		try (Connection conn = ds.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(selectAllSql)) {
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(selectAllSql)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Product product = new Product();
@@ -101,12 +97,11 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> selectByPType(String p_type) {
 		String selectByPTypeSql = "SELECT p_id, p_name, p_price, p_type, p_class, p_pic_one FROM product WHERE p_status = 1 and p_type = ?;";
 		var list = new ArrayList<Product>();
-		
-		try (Connection conn = ds.getConnection();
-				PreparedStatement ps = conn.prepareStatement(selectByPTypeSql)) {
+
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(selectByPTypeSql)) {
 			ps.setString(1, p_type);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				Product product = new Product();
 				product.setP_id(rs.getInt("p_id"));
 				product.setP_name(rs.getString("p_name"));
@@ -114,7 +109,7 @@ public class ProductDaoImpl implements ProductDao {
 				product.setP_type(rs.getString("p_type"));
 				product.setP_class(rs.getString("p_class"));
 				product.setP_pic_one(rs.getBytes("p_pic_one"));
-				
+
 				list.add(product);
 			}
 		} catch (SQLException e) {
@@ -127,12 +122,11 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> selectByPClass(String p_class) {
 		String selectByPClassSql = "SELECT p_id, p_name, p_price, p_type, p_class, p_pic_one FROM product where p_status = 1 and p_class = ?;";
 		var list = new ArrayList<Product>();
-		
-		try (Connection conn = ds.getConnection();
-				PreparedStatement ps = conn.prepareStatement(selectByPClassSql)) {
+
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(selectByPClassSql)) {
 			ps.setString(1, p_class);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				Product product = new Product();
 				product.setP_id(rs.getInt("p_id"));
 				product.setP_name(rs.getString("p_name"));
@@ -140,7 +134,7 @@ public class ProductDaoImpl implements ProductDao {
 				product.setP_type(rs.getString("p_type"));
 				product.setP_class(rs.getString("p_class"));
 				product.setP_pic_one(rs.getBytes("p_pic_one"));
-				
+
 				list.add(product);
 			}
 		} catch (SQLException e) {
@@ -180,13 +174,12 @@ public class ProductDaoImpl implements ProductDao {
 	public int selectPStockByPid(Integer p_id) {
 		String selectPStockByPidSql = "SELECT p_stock FROM product where p_id = ?;";
 		int pStock = 1;
-		
-		try (Connection conn = ds.getConnection();
-				PreparedStatement ps = conn.prepareStatement(selectPStockByPidSql)) {
+
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(selectPStockByPidSql)) {
 			ps.setInt(1, p_id);
 			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				pStock = rs.getInt("p_stock");
 			}
 
@@ -195,7 +188,7 @@ public class ProductDaoImpl implements ProductDao {
 		}
 		return pStock;
 	}
-	
+
 //	@Override
 //	public Product selectByPId(Integer p_id) {
 ////		String selectByPIdSql = "SELECT * FROM product where p_id = ?;";
@@ -239,22 +232,18 @@ public class ProductDaoImpl implements ProductDao {
 //		return product;
 //	}
 
-	
 	@Override
 	public Product selectByPId(Integer p_id) {
 //		String selectByPIdSql = "SELECT * FROM product where p_id = ?;";
 		String selectByPIdSql = "SELECT p_id, p_m_id, p_name, p_price, p_stock, p_type, p_class, p_des, m_name, p_pic_one, p_pic_two, p_pic_three, p_pic_four\r\n"
-				+ "FROM PRODUCT p join MASTER m \r\n"
-				+ "ON p.p_m_id = m.m_id\r\n"
-				+ "WHERE p_id = ?;";
+				+ "FROM PRODUCT p join MASTER m \r\n" + "ON p.p_m_id = m.m_id\r\n" + "WHERE p_id = ?;";
 		Product product = new Product();
-		
-		try (Connection conn = ds.getConnection();
-				PreparedStatement ps = conn.prepareStatement(selectByPIdSql)) {
+
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(selectByPIdSql)) {
 			ps.setInt(1, p_id);
 			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				product.setP_id(rs.getInt("p_id"));
 				product.setP_m_id(rs.getInt("p_m_id"));
 				product.setP_name(rs.getString("p_name"));
@@ -274,7 +263,7 @@ public class ProductDaoImpl implements ProductDao {
 //				product.setP_1(rs.getString("p_1"));
 //				product.setP_2(rs.getString("p_2"));
 //				product.setP_3(rs.getString("p_3"));
-                product.setM_name(rs.getString("m_name"));
+				product.setM_name(rs.getString("m_name"));
 			}
 
 		} catch (SQLException e) {
@@ -288,8 +277,7 @@ public class ProductDaoImpl implements ProductDao {
 		String searchSql = "SELECT p_id, p_name, p_price, p_type, p_class, p_pic_one FROM product where p_status = 1 and p_name like ?;";
 		var list = new ArrayList<Product>();
 
-		try (Connection conn = ds.getConnection(); 
-				PreparedStatement ps = conn.prepareStatement(searchSql)) {
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(searchSql)) {
 			ps.setString(1, "%" + inputText + "%");
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -300,13 +288,13 @@ public class ProductDaoImpl implements ProductDao {
 				product.setP_type(rs.getString("p_type"));
 				product.setP_class(rs.getString("p_class"));
 				product.setP_pic_one(rs.getBytes("p_pic_one"));
-				
+
 				list.add(product);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return list;
 	}
 
@@ -314,12 +302,11 @@ public class ProductDaoImpl implements ProductDao {
 	public byte[] selectPicByPid(Integer p_id) {
 		String selectPicByPidSql = "SELECT p_pic_one FROM product where p_id = ?;";
 		byte[] pic_content = new byte[1024];
-		
-		try (Connection conn = ds.getConnection();
-				PreparedStatement ps = conn.prepareStatement(selectPicByPidSql)) {
+
+		try (Connection conn = ds.getConnection(); PreparedStatement ps = conn.prepareStatement(selectPicByPidSql)) {
 			ps.setInt(1, p_id);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				pic_content = rs.getBytes("p_pic_one");
 			}
 		} catch (SQLException e) {
@@ -333,10 +320,9 @@ public class ProductDaoImpl implements ProductDao {
 		Session session = getSession();
 		final Product product = session.load(Product.class, p_id);
 		product.setP_stock(product.getP_stock() - quantity);
-		
+
 		return 1;
-		
-		
+
 //		String updatePCountByPidSql = "UPDATE product SET p_stock = p_stock - ? WHERE p_id = ?;";
 //		int rowCount = 0;
 //		
@@ -351,6 +337,27 @@ public class ProductDaoImpl implements ProductDao {
 //		}
 //		
 //		return rowCount;
+	}
+
+	@Override
+	public Product selectPNameByPId(int p_id) {
+		String selectByPIdSql = "select p_id, p_name from product where p_id = ?";
+		Product product = new Product();
+		
+		try (Connection conn = ds.getConnection();
+				PreparedStatement ps = conn.prepareStatement(selectByPIdSql)) {
+			ps.setInt(1, p_id);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				product.setP_id(rs.getInt("p_id"));
+				product.setP_name(rs.getString("p_name"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return product;
 	}
 
 //	@Override
@@ -379,7 +386,5 @@ public class ProductDaoImpl implements ProductDao {
 //		}
 //		return list;
 //	}
-
-
 
 }

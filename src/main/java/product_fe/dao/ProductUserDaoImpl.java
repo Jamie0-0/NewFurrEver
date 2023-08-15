@@ -33,7 +33,7 @@ public class ProductUserDaoImpl implements ProductUserDao {
 			if (rs.next()) {
 				ProductUser productUser = new ProductUser();
 				productUser.setUid(rs.getInt("uid"));
-				productUser.setName(rs.getString("u_name"));
+				productUser.setU_name(rs.getString("u_name"));
 				return productUser;
 			}
 		} catch (Exception e) {
@@ -51,9 +51,9 @@ public class ProductUserDaoImpl implements ProductUserDao {
 			if (rs.next()) {
 				ProductUser productUser = new ProductUser();
 				productUser.setUid(rs.getInt("uid"));
-				productUser.setName(rs.getString("u_name"));
-				productUser.setPhone(rs.getString("u_phone"));
-				productUser.setAddr(rs.getString("u_address"));
+				productUser.setU_name(rs.getString("u_name"));
+				productUser.setU_phone(rs.getString("u_phone"));
+				productUser.setU_address(rs.getString("u_address"));
 				return productUser;
 			}
 		} catch (Exception e) {
@@ -73,9 +73,9 @@ public class ProductUserDaoImpl implements ProductUserDao {
 			if (rs.next()) {
 				ProductUser productUser = new ProductUser();
 				productUser.setUid(rs.getInt("uid"));
-				productUser.setName(rs.getString("u_name"));
-				productUser.setPhone(rs.getString("u_phone"));
-				productUser.setAddr(rs.getString("u_address"));
+				productUser.setU_name(rs.getString("u_name"));
+				productUser.setU_phone(rs.getString("u_phone"));
+				productUser.setU_address(rs.getString("u_address"));
 				return productUser;
 			}
 		} catch (Exception e) {

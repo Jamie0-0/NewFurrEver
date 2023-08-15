@@ -24,12 +24,10 @@ import redis.clients.jedis.Jedis;
 public class UpdateCartController extends HttpServlet {
 
 	private ProductService service;
-//	private MemberDao memberDao;
 
 	@Override
 	public void init() throws ServletException {
 		service = new ProductServiceImpl();
-//		memberDao = new MemberDaoImpl();
 	}
 
 	@Override
@@ -39,57 +37,30 @@ public class UpdateCartController extends HttpServlet {
 
 		HttpSession session = req.getSession();
 		Gson gson = new Gson();
-		
-		//////
 
-//		String username = (String) session.getAttribute("username");
 		String username = (String) session.getAttribute("uName");
-//		int uid = (int) session.getAttribute("uid");
-//		Member member = new Member();
 		int uid = 0;
-		
+
 		HashMap<Integer, Integer> cartList = null;
-		
+
 		if (username == null) {
 			cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
-			System.out.println("用到1");
 		} else if (username != null) {
-
-			System.out.println("用到2");
-			System.out.println("username = "+username);
-//			member =  memberDao.selectByUserNameForCart(username);
 			uid = (int) session.getAttribute("uid");
-
-			Jedis jedis = JedisPoolUtil.getJedisPool().getResource();
-			Map<String, String> reddisCartList = jedis.hgetAll("user:" + uid + ":cart.list");
-			
-			if(reddisCartList.isEmpty()) {
-				cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
-				System.out.println("用到reddisCartList.isEmpty()");
-			}else if(!reddisCartList.isEmpty()) {
-				cartList = ProductUtil.mapStringCastToInt(reddisCartList);
-				System.out.println("用到!reddisCartList.isEmpty()");
-			}
-			jedis.close();
+			cartList = service.getCartListMapForMember(session, uid);	
 		}
-		/////
-		
 
 		int p_id = Integer.parseInt(req.getParameter("p_id"));
 		int quantity = Integer.parseInt(req.getParameter("quantity"));
 		System.out.println("update的p_id = " + p_id);
 		System.out.println("update的quantity = " + quantity);
 
-//		HashMap<Integer, Integer> cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
-
 		System.out.println("update之前的原本的CartList =" + cartList);
 		service.updateCart(req, p_id, quantity, cartList);
-		
+
 		if (username != null) {
 			service.saveCartToRedis(session, uid);
 		}
-
-				
 
 		// 檢查欲增加數量有沒有大於商品庫存數量, 有的話直接回傳錯誤訊息就結束
 		List<String> msgs = service.getMsgs();
@@ -99,18 +70,17 @@ public class UpdateCartController extends HttpServlet {
 		}
 
 		int subtotal = service.getCartSubTotal(cartList);
-
 		String newCartList = gson.toJson(session.getAttribute("cartList"));
-		
-		String message = "{\"status\":\"true\",\"cartlist\":" + gson.toJson(newCartList) +
-				",\"subtotal\":" + subtotal +",\"total\":" + (subtotal + 120) + "}"; // 運費固定120
-		
+
+		String message = "{\"status\":\"true\",\"cartlist\":" + gson.toJson(newCartList) + ",\"subtotal\":" + subtotal
+				+ ",\"total\":" + (subtotal + 120) + "}"; // 運費固定120
+
 		resp.getWriter().write(message);
-		
+
 		System.out.println(message);
-		
+
 		System.out.println("====== 購物車數量已update ========");
-		
+
 	}
 
 	@Override

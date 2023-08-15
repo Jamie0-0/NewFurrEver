@@ -23,13 +23,11 @@ public class ProductDetailController extends HttpServlet {
 
 	private ProductService service;
 	private ProductLikeService plService;
-//	private MemberDao memberDao;
 
 	@Override
 	public void init() throws ServletException {
 		service = new ProductServiceImpl();
 		plService = new ProductLikeServiceImpl();
-//		memberDao = new MemberDaoImpl();
 	}
 
 	@Override
@@ -57,33 +55,26 @@ public class ProductDetailController extends HttpServlet {
         } else {
         	base64PicOne = "";
         }
-
         if (product.getP_pic_two() != null) {
         	 base64PicTwo = Base64.getEncoder().encodeToString(product.getP_pic_two());
         } else {
         	 base64PicTwo = "";
         }
-
         if (product.getP_pic_three() != null) {
         	base64PicThree = Base64.getEncoder().encodeToString(product.getP_pic_three());
         } else {
         	base64PicThree = "";
         }
-        
         if (product.getP_pic_four() != null) {
         	base64PicFour = Base64.getEncoder().encodeToString(product.getP_pic_four());
         } else {
         	base64PicFour = "";
         }
 		
-//		String username = (String) session.getAttribute("uName");
-//		int uid = (int) session.getAttribute("uid");
         int pl_uid = 0;
         
         // 商品追蹤是否有登入判斷
 		if (session.getAttribute("uName") != null) {
-//			String username = (String) session.getAttribute("username");
-//			int pl_uid = memberDao.selectByUserNameForCart(username).getUid();
 			pl_uid = (int) session.getAttribute("uid");
 			productLikeExists = plService.showProductLike(pl_uid, p_id);
 			List<String> msgs = service.getMsgs();

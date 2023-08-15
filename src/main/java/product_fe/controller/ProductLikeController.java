@@ -18,12 +18,10 @@ import product_fe.service.ProductLikeServiceImpl;
 @WebServlet("/shop/productDetail/productLike")
 public class ProductLikeController extends HttpServlet {
 	private ProductLikeService service;
-//	private MemberDao memberDao;
 
 	@Override
 	public void init() throws ServletException {
 		service = new ProductLikeServiceImpl();
-//		memberDao = new MemberDaoImpl();
 	}
 
 	@Override
@@ -34,7 +32,6 @@ public class ProductLikeController extends HttpServlet {
 		HttpSession session = req.getSession();
 		Gson gson = new Gson();
 		String message = "";
-//		String username = (String) session.getAttribute("username");
 		String username = (String) session.getAttribute("uName");
 
 		if (username == null) {
@@ -44,7 +41,6 @@ public class ProductLikeController extends HttpServlet {
 			return;
 
 		} else if (username != null) {
-//			int pl_uid = memberDao.selectByUserNameForCart(username).getUid();
 			int pl_uid = (int) session.getAttribute("uid");
 			int pl_p_id = Integer.parseInt(req.getParameter("pl_p_id"));
 			boolean productLikeExists = service.manageProductLike(pl_uid, pl_p_id);
