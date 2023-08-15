@@ -433,14 +433,15 @@
 							sessionStorage.removeItem('companyName')
 							sessionStorage.setItem("uid", data.loginUser);
 							sessionStorage.setItem("username", data.userName)
-							console.log(data.location);
+							// console.log(data.location);
 							document.getElementById('error_pwd').innerText = ''; // 清除錯誤訊息
 							if (data.location === '') {
 								location.href = "member_center.html";
 							}
-							// else{
-							// 	location.href = 'https://www.google.com';
-							// }
+							else{
+								console.log(data.location);
+								location.href = data.location;
+							}
 						})
 						.catch((error) => {
 							console.log(error);
@@ -467,7 +468,7 @@
 								sessionStorage.setItem("mid", data.Masterid);
 								sessionStorage.setItem('companyName', data.companyName);
 								document.getElementById('error_pwd').innerText = ''; // 清除錯誤訊息
-								// location.href = data.location;
+								location.href = 'https://www.google.com';
 							}
 						})
 						.catch((error) => {
