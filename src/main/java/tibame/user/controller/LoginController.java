@@ -40,9 +40,9 @@ public class LoginController {
 		if (location == null || location.isBlank()) {
 			location = "";
 		}
-		else {
-			location = "index.html";
-		}
+//		else {
+//			location = "index.html";
+//		}
 
 		session.removeAttribute("location");
 
