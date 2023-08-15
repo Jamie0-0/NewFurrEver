@@ -29,12 +29,12 @@ public class CartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private ProductService service;
-	private ProductUserDao memberDao;
+	private ProductUserDao productUserDao;
 
 	@Override
 	public void init() throws ServletException {
 		service = new ProductServiceImpl();
-		memberDao = new ProductUserDaoImpl();
+		productUserDao = new ProductUserDaoImpl();
 	}
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -46,177 +46,39 @@ public class CartController extends HttpServlet {
 		HttpSession session = req.getSession();
 		Gson gson = new Gson();
 
-		
-//		String username = (String) session.getAttribute("username");
 		String username = (String) session.getAttribute("uName");
 		int uid = 0;
-		ProductUser member = new ProductUser();
-		
+		ProductUser productUser = new ProductUser();
+
 		HashMap<Integer, Integer> cartList = null;
-		
+
 		if (username == null) {
 			cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
-			System.out.println("user =null, cartList = " +cartList);
-			System.out.println("用到1");
-
 		} else if (username != null) {
-			System.out.println("用到2");
-			System.out.println("username = "+username);
-			cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
-			
-			member =  memberDao.selectByUserNameForCart(username);
+			productUser =  productUserDao.selectByUserNameForCart(username);
 			uid = (int) session.getAttribute("uid");
-
-			Jedis jedis = JedisPoolUtil.getJedisPool().getResource();
-			Map<String, String> reddisCartList = jedis.hgetAll("user:" + uid + ":cart.list");
-			System.out.println("reddisCartList=" + reddisCartList);
-			
-			
-			if(reddisCartList.isEmpty()) {
-				cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
-				System.out.println("用到reddisCartList.isEmpty()");
-			}else if(!reddisCartList.isEmpty()) {
-				cartList = ProductUtil.mapStringCastToInt(reddisCartList);
-				System.out.println("用到!reddisCartList.isEmpty()");
-			}
-			jedis.close();
+			cartList = service.getCartListMapForMember(session, uid);	
 		}
-		/////
 
-//	HashMap<Integer, Integer> cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
+		JsonArray cartArray = service.getCartListJSON(cartList);
+		// 若購物車是空的, 傳給前端訊息並結束
+		List<String> msgs = service.getMsgs();
+		if (!msgs.isEmpty()) {
+			resp.getWriter().write(gson.toJson(msgs));
+			System.out.println(gson.toJson(msgs));
+			return;
+		}
 
-	JsonArray cartArray = service.getCartListJSON(cartList);
-	// 若購物車是空的, 傳給前端訊息並結束
-	List<String> msgs = service.getMsgs();
-	if (!msgs.isEmpty()) {
-		resp.getWriter().write(gson.toJson(msgs));
-		System.out.println(msgs);
-		System.out.println(gson.toJson(msgs));
-		return;
-	}
+		int subtotal = service.getCartSubTotal(cartList);
 
-	int subtotal = service.getCartSubTotal(cartList);
-
-	// 用會員名稱查詢電話住址(放到service裡?)
-//	MemberDao dao = new MemberDaoImpl();
-//	String username = (String) session.getAttribute("username");
-//	Member member = memberDao.selectByUserNameForCart(username);
-//	Member member = dao.selectByUserNameForCart("Jane"); // 測試寫死
-
-	String message = "{\"user\":" + gson.toJson(member) + ",\"cartList\":" + gson.toJson(cartArray)
-			+ ",\"subtotal\":" + subtotal + ",\"total\":" + (subtotal + 120) + "}";
-	resp.getWriter().write(message);
-	System.out.println(message);
-
-//	String message = service.getCartListAndTotalJSON(cartList);
-//	System.out.println("cartListJSON =" + cartListJSON);  // cartListJSON ={"2":5}
-//	System.out.println("getCartListAndTotalJSON =" + message); // {"cartList":[{"p_id":2,"p_name":"商品2潔牙骨","p_price":150,"quantity":5}],"subtotal":750,"total":870}
-	
-		
-		//////////////////////////////////////////////
-	//////
-//			String username = (String) session.getAttribute("username");
-//			Member member = new Member();
-//			
-//			HashMap<Integer, Integer> cartList = null;
-//			
-//			if (username == null) {
-//				cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
-//				System.out.println("user =null, cartList = " +cartList);
-//
-//			} else if (username != null) {
-//				member =  memberDao.selectByUserNameForCart(username);
-//				int uid = member.getUid();
-//
-//				Jedis jedis = JedisPoolUtil.getJedisPool().getResource();
-//				Map<String, String> reddisCartList = jedis.hgetAll("user:" + uid + ":cart.list");
-//				System.out.println("reddisCartList=" + reddisCartList);
-//				
-//				
-//				if(reddisCartList == null) {
-//					cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
-//				}else if(reddisCartList != null) {
-//					cartList = ProductUtil.mapStringCastToInt(reddisCartList);
-//				}
-//				jedis.close();
-//			}
-//			/////
-//
-////		HashMap<Integer, Integer> cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
-//
-//		JsonArray cartArray = service.getCartListJSON(cartList);
-//		// 若購物車是空的, 傳給前端訊息並結束
-//		List<String> msgs = service.getMsgs();
-//		if (!msgs.isEmpty()) {
-//			resp.getWriter().write(gson.toJson(msgs));
-//			System.out.println(msgs);
-//			System.out.println(gson.toJson(msgs));
-//			return;
-//		}
-//
-//		int subtotal = service.getCartSubTotal(cartList);
-//
-//		// 用會員名稱查詢電話住址(放到service裡?)
-////		MemberDao dao = new MemberDaoImpl();
-////		String username = (String) session.getAttribute("username");
-////		Member member = memberDao.selectByUserNameForCart(username);
-////		Member member = dao.selectByUserNameForCart("Jane"); // 測試寫死
-//
-//		String message = "{\"user\":" + gson.toJson(member) + ",\"cartList\":" + gson.toJson(cartArray)
-//				+ ",\"subtotal\":" + subtotal + ",\"total\":" + (subtotal + 120) + "}";
-//		resp.getWriter().write(message);
-//		System.out.println(message);
-//
-////		String message = service.getCartListAndTotalJSON(cartList);
-////		System.out.println("cartListJSON =" + cartListJSON);  // cartListJSON ={"2":5}
-////		System.out.println("getCartListAndTotalJSON =" + message); // {"cartList":[{"p_id":2,"p_name":"商品2潔牙骨","p_price":150,"quantity":5}],"subtotal":750,"total":870}
-//		
-		
-		/////////////////////////////////////
-		
-		
-		
-		
-//		resp.setContentType("application/json");
-//		resp.setCharacterEncoding("UTF-8");
-//		req.setCharacterEncoding("UTF-8");
-//
-//		HttpSession session = req.getSession();
-//		Gson gson = new Gson();
-//
-//		HashMap<Integer, Integer> cartList = (HashMap<Integer, Integer>) session.getAttribute("cartList");
-//
-//		JsonArray cartArray = service.getCartListJSON(cartList);
-//		// 若購物車是空的, 傳給前端訊息並結束
-//		List<String> msgs = service.getMsgs();
-//		if (!msgs.isEmpty()) {
-//			resp.getWriter().write(gson.toJson(msgs));
-//			System.out.println(msgs);
-//			System.out.println(gson.toJson(msgs));
-//			return;
-//		}
-//
-//		int subtotal = service.getCartSubTotal(cartList);
-//
-//		// 用會員名稱查詢電話住址(放到service裡?)
-//		MemberDao dao = new MemberDaoImpl();
-////		String username = (String) session.getAttribute("username");
-////		Member member = dao.selectByUserName(username);
-//		Member member = dao.selectByUserNameForCart("Jane"); // 測試寫死
-//
-//		String message = "{\"user\":" + gson.toJson(member) + ",\"cartList\":" + gson.toJson(cartArray)
-//				+ ",\"subtotal\":" + subtotal + ",\"total\":" + (subtotal + 120) + "}";
-//		resp.getWriter().write(message);
-//		System.out.println(message);
-//
-////		String message = service.getCartListAndTotalJSON(cartList);
-////		System.out.println("cartListJSON =" + cartListJSON);  // cartListJSON ={"2":5}
-////		System.out.println("getCartListAndTotalJSON =" + message); // {"cartList":[{"p_id":2,"p_name":"商品2潔牙骨","p_price":150,"quantity":5}],"subtotal":750,"total":870}
+		String message = "{\"user\":" + gson.toJson(productUser) + ",\"cartList\":" + gson.toJson(cartArray)
+				+ ",\"subtotal\":" + subtotal + ",\"total\":" + (subtotal + 120) + "}";
+		resp.getWriter().write(message);
+		System.out.println(message);
 
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		doGet(req, resp);
 	}
 

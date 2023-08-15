@@ -169,67 +169,11 @@
                                     </li>
                                     <!-- 購物車 -->
                                     <li class="right-side">
-                                        <div class="onhover-dropdown header-badge">
+                                        <div>
                                             <button type="button" class="btn p-0 position-relative header-wishlist">
-                                                <i data-feather="shopping-cart"></i>
-                                                <span class="position-absolute top-0 start-100 translate-middle badge">2
-                                                    <span class="visually-hidden">unread messages</span>
-                                                </span>
+                                                <a href="cart.html"><i data-feather="shopping-cart"></i>
+                                                </a>
                                             </button>
-
-                                            <div class="onhover-div">
-                                                <ul class="cart-list">
-                                                    <li class="product-box-contain">
-                                                        <div class="drop-cart">
-                                                            <a href="product-left-thumbnail.html" class="drop-image">
-                                                                <img src="./assets/images/vegetable/product/1.png"
-                                                                    class="blur-up lazyload" alt="">
-                                                            </a>
-
-                                                            <div class="drop-contain">
-                                                                <a href="product-left-thumbnail.html">
-                                                                    <h5>Fantasy Crunchy Choco Chip Cookies</h5>
-                                                                </a>
-                                                                <h6><span>1 x</span> $80.58</h6>
-                                                                <button class="close-button close_button">
-                                                                    <i class="fa-solid fa-xmark"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-
-                                                    <li class="product-box-contain">
-                                                        <div class="drop-cart">
-                                                            <a href="product-left-thumbnail.html" class="drop-image">
-                                                                <img src="./assets/images/vegetable/product/2.png"
-                                                                    class="blur-up lazyload" alt="">
-                                                            </a>
-
-                                                            <div class="drop-contain">
-                                                                <a href="product-left-thumbnail.html">
-                                                                    <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                                                    </h5>
-                                                                </a>
-                                                                <h6><span>1 x</span> $25.68</h6>
-                                                                <button class="close-button close_button">
-                                                                    <i class="fa-solid fa-xmark"></i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-
-                                                <div class="price-box">
-                                                    <h5>Total :</h5>
-                                                    <h4 class="theme-color fw-bold">$106.58</h4>
-                                                </div>
-
-                                                <div class="button-group">
-                                                    <a href="cart.html" class="btn btn-sm cart-button">View Cart</a>
-                                                    <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
-                                                text-white">Checkout</a>
-                                                </div>
-                                            </div>
                                         </div>
                                     </li>
                                     <!-- 聊天室 -->
@@ -923,81 +867,6 @@
                                 });
                             });
                         </script>
-
-
-
-                        <script>
-                        //    // ---------------成功版--------------- //
-                        //     $(function () {
-                        //         // 取得每個 span.price 的價格值並發送 fetch 請求
-                        //         for (let i = 1; i <= 3; i++) {
-                        //             var product_name_el = $("h5#product_name" + i).text();
-                        //             // console.log(price_el);
-                        //         }
-
-                        //         // 使用 fetch 請求資料
-                        //         fetch('http://localhost:8081/TirTirCat/shop', {
-                        //             method: 'POST',
-                        //             headers: {
-                        //                 'Content-Type': 'application/json'
-                        //             },
-                        //             body: JSON.stringify({
-                        //                 findAllForShopList: product_name_el
-                        //             })
-                        //         }) // 記得更改後端URL
-                        //             .then(response => response.json())
-                        //             .then(data => {
-                        //                 console.log(data);
-                        //                 console.log(data.findAllForShopList[0].p_name);
-
-                        //                 if (data.status === "true") {
-                        //                     for (let i = 1; i <= data.findAllForShopList.length; i++) {
-                        //                     // location.href = "https://www.google.com"
-                        //                     let name = data.findAllForShopList[i-1].p_name;
-
-                        //                     // 假設 price_el 是一個儲存價格的 <span> 標籤的元素
-                        //                     // 將價格更新到對應的 <span> 標籤中
-                        //                     $("h5#product_name" + i).text(name);
-                        //                 }
-                        //             }
-                        //                 // // 將從後端獲取的資料更新到倒數計時器容器中
-                        //                 // Object.keys(data).forEach(key => {
-                        //                 //     const endDate = new Date(data[key].gb_time_end);
-                        //                 //     updateCountdown(key, endDate);
-                        //                 // });
-                        //             })
-                        //             .catch(error => {
-                        //                 console.error('Error:', error)
-                        //             });
-                        //     }
-                        //     );
-                        </script>
-
-
-
-                        <!--分頁 <nav class="custome-pagination">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="javascript:void(0)" tabindex="-1" aria-disabled="true">
-                                        <i class="fa-solid fa-angles-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="javascript:void(0)">1</a>
-                                </li>
-                                <li class="page-item" aria-current="page">
-                                    <a class="page-link" href="javascript:void(0)">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="javascript:void(0)">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="javascript:void(0)">
-                                        <i class="fa-solid fa-angles-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav> -->
                     </div>
                 </div>
             </div>

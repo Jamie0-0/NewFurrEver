@@ -27,7 +27,7 @@ public class SubProduct implements Serializable{
 	@Column
 	private int p_m_price;
 	@Column
-	private String sub1;
+	private String p_m_name;
 	@Column
 	private String sub2;
 	@Column
@@ -94,12 +94,12 @@ public class SubProduct implements Serializable{
 		this.p_m_price = p_m_price;
 	}
 
-	public String getSub1() {
-		return sub1;
+	public String getP_m_name() {
+		return p_m_name;
 	}
 
-	public void setSub1(String sub1) {
-		this.sub1 = sub1;
+	public void setP_m_name(String p_m_name) {
+		this.p_m_name = p_m_name;
 	}
 
 	public String getSub2() {
@@ -138,7 +138,7 @@ public class SubProduct implements Serializable{
 	@Override
 	public String toString() {
 		return "SubProduct [order_id=" + order_id + ", p_p_id=" + p_p_id + ", p_m_stock=" + p_m_stock + ", p_m_price="
-				+ p_m_price + ", sub1=" + sub1 + ", sub2=" + sub2 + ", sub3=" + sub3 + ", subOrder=" + subOrder
+				+ p_m_price + ", p_m_name =" + p_m_name + ", sub2=" + sub2 + ", sub3=" + sub3 + ", subOrder=" + subOrder
 				+ ", product=" + product + "]";
 	}
 
