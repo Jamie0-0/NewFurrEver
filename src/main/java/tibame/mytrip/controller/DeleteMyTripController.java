@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import tibame.mytrip.service.TripService;
+import tibame.mytrip.service.MyTripService;
 
 @RestController
 @RequestMapping("deletemytrip")
 public class DeleteMyTripController {
 
 	@Autowired
-	private TripService tripService;
+	private MyTripService tripService;
 	
 	//刪除追蹤出遊活動
 	@PostMapping

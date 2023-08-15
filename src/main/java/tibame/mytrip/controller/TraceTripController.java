@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import tibame.mytrip.service.TripService;
-import tibame.mytrip.vo.Trip;
+import tibame.mytrip.service.MyTripService;
+import tibame.mytrip.vo.MyTrip;
 
 @RestController
 @RequestMapping("tracetrip")
 public class TraceTripController {
 
 	@Autowired
-	private TripService tripService;
+	private MyTripService tripService;
 
 	//查詢追蹤出遊活動
 	
@@ -30,7 +30,7 @@ public class TraceTripController {
 		Integer uid = (Integer) session.getAttribute("uid");
 		Map<String, Object> response = new HashMap<>();
 		if (uid != null) {
-			List<Trip> triplist = tripService.findTraceTrips(uid);
+			List<MyTrip> triplist = tripService.findTraceTrips(uid);
 			if (triplist.isEmpty()) {
 				response.put("noAct", 0);
 				return ResponseEntity.ok(response);

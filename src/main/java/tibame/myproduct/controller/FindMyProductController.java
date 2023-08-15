@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import tibame.myproduct.service.ProductService;
+import tibame.myproduct.service.MyProductService;
 import tibame.myproduct.vo.MyProduct;
 
 @RestController
@@ -21,7 +21,7 @@ import tibame.myproduct.vo.MyProduct;
 public class FindMyProductController {
 
 	@Autowired
-	private ProductService productService;
+	private MyProductService productService;
 
 	@PostMapping
 	public ResponseEntity<?> findMyProduct(HttpSession session) {

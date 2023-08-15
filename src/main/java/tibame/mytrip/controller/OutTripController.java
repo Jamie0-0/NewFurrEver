@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import tibame.mytrip.service.TripService;
+import tibame.mytrip.service.MyTripService;
 
 
 @RestController
@@ -18,7 +18,7 @@ import tibame.mytrip.service.TripService;
 public class OutTripController {
 	
 	@Autowired
-	private TripService tripService;
+	private MyTripService tripService;
 
 	@PostMapping
 	public ResponseEntity<?> editJoinTrip(HttpSession session,@RequestParam Integer tActId) {
