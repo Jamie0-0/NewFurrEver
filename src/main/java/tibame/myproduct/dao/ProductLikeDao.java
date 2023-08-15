@@ -1,0 +1,16 @@
+package tibame.myproduct.dao;
+
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Component;
+
+import tibame.myproduct.vo.MyProductLike;
+
+@Component
+public interface ProductLikeDao extends CrudRepository<MyProductLike, Integer>{
+	
+	@Modifying
+	@Query(value = "delete from product_like where pl_uid = ?1 and pl_p_id = ?2",nativeQuery = true)
+	Integer deledeleteByplUidAndplPId(Integer plUid, Integer plPId);
+}
